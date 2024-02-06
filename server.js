@@ -5,7 +5,8 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const { sequelize } = require('./models');
+// const { sequelize } = require('./models');
+const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,10 +33,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-const apiRoutes = require('./routes/apiRoutes.js');
+// const apiRoutes = require('./routes/apiRoutes.js');
 const htmlRoutes = require('./routes/htmlRoutes');
 
-app.use('/api', apiRoutes);
+// app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
 // Sync Sequelize models and start the server
