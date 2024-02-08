@@ -1,11 +1,9 @@
-// server.js
 const express = require('express');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-// const { sequelize } = require('./models');
 const sequelize = require('./config/connection');
 
 const app = express();
