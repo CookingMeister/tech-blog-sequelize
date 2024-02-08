@@ -1,24 +1,16 @@
 const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
 
-// Route for handling user login
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/dashboard', // Redirect to dashboard on successful login
-    failureRedirect: '/login', // Redirect back to login page on failed login
-    failureFlash: true, // Enable flashing of error messages
-  }),
-  (err, req, res, next) => {
-    if (err) {
-      return res.status(500).send({ error: 'Server error' });
-    }
-  }
-);
-
-// Route for handling user logout
-router.get('/logout', (req, res) => {
-  req.logout(); // Provided by Passport to clear login session
-  res.redirect('/');
+const authenticate = passport.authenticate('local', {
+  successRedirect: '/home', // Redirect to home on successful login
+  failureRedirect: '/login', // Redirect back to login page on failed login
+  failureFlash: true, // Enable flashing of error messages
 });
 
-module.exports = router;
+const logout = (req, res) => {
+  req.logout(); // Provided by Passport to clear login session
+  res.redirect('/');
+}
+
+
+module.exports = { authenticate, logout };

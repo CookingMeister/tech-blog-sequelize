@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
+// const passport = require('../config/passport.js');
+const saltRounds = 10;
 
 // Register a new user
 router.post('/register', async (req, res) => {
@@ -14,7 +15,13 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Email already in use' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, saltRounds, async (err, hash) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+      return hash;
+    });
     const newUser = await User.create({ username, email, password: hashedPassword });
 
     // Log the user in after registration if needed
@@ -24,6 +31,7 @@ router.post('/register', async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
       return res.json(newUser);
+      // redirect to home/dashboard???? here??????????????????????????????????????
     });
   } catch (error) {
     console.error(error);
