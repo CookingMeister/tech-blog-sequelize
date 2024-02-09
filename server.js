@@ -2,10 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy; /////  not needed for now
 const sequelize = require('./config/connection.js');
 const routes = require('./routes');
-// const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +14,7 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static((__dirname + '/public/styles')));
+app.use(express.static((__dirname +'/public')));
 
 // Session setup
 const sessionStore = new SequelizeStore({ db: sequelize });
@@ -33,11 +31,6 @@ app.use(passport.session());
 
 // Routes
 
-// const apiRoutes = require('./routes/api/index.js');
-// const htmlRoutes = require('./routes/index.js');
-
-// app.use('/api', apiRoutes);
-// app.use('/', htmlRoutes);
 app.use(routes);
 
 // Sync Sequelize models and start the server
