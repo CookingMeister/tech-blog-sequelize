@@ -6,9 +6,9 @@ router.get('/', (req, res) => {
     res.render('home1');
   });
 
-router.get('/register', (req, res) => {
-  res.render('register');
-});
+// router.get('/register', (req, res) => {
+//   res.render('register');
+// });
 
 router.get('/login', (req, res) => {
   res.render('login');

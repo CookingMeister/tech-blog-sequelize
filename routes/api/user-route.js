@@ -3,8 +3,6 @@ const { User } = require('../../models');
 // const bcrypt = require('bcrypt');
 // const saltRounds = 10;
 
-
-
 // Get user profile
 router.get('/profile', (req, res) => {
   // Authentication middleware in place

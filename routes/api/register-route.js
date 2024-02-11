@@ -3,6 +3,10 @@ const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+router.get('/register', (req, res) => {
+  res.render('register');
+});
+
 // Register a new user
 router.post('/', async (req, res) => {
     const { username, password } = req.body;
