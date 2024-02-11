@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
-const sequelize = require('../../config/connection');
+// const sequelize = require('../../config/connection');
 
+router.get('/', (req, res) => {
+  res.render('register');
+});
 // GET all posts
 router.get('/posts', async (req, res) => {
   try {
@@ -39,6 +42,7 @@ router.post('/posts', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 // Update a post by ID
 router.put('/posts/:id', async (req, res) => {
   const postId = req.params.id;
