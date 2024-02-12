@@ -1,6 +1,8 @@
 <%- include('partials/header.ejs') %>
 
 <div class="jumbotron centered custom-jumbotron">
+  <h3 id="date2"></h3>
+  <hr>
   <div class="container text-center">
     <i class="far fa-newspaper fa-4x p-2"></i>
     <h1 class="display-3 p-2" style="display: inline">
@@ -12,11 +14,13 @@
     <hr />
     <a class="btn btn-light btn-lg m-4" href="/api/register" role="button"
       >Register</a>
-    <a class="btn btn-dark btn-lg m-4" href="/login" role="button"
+    <a class="btn btn-dark btn-lg m-4" href="/api/login" role="button"
       >Login</a>
     <a class="btn btn-light btn-lg m-4" href="/create" role="button"
-      >See Posts</a>
+      >Create Posts</a>
+      <a class="btn btn-dark btn-lg m-4" href="/dashboard" role="button"
+      >Dashboard</a>
   </div>
 </div>
-
+<script src="./js/date.js"></script>
 <%- include('partials/footer.ejs') %>

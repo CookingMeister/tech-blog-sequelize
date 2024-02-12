@@ -1,43 +1,42 @@
-console.log('hello');
+// const getPosts = () =>
+//   axios.get('/api/posts');
 
-const getPosts = () =>
-  axios.get('/api/posts');
+// const savePost = (post) =>
+//   axios.post('/api/posts', post);
 
-const savePost = (post) =>
-  axios.post('/api/posts', post);
+// const updatePost = (id, post) =>
+//   axios.put(`/api/posts/${id}`, post);
 
-const updatePost = (id, post) =>
-  axios.put(`/api/posts/${id}`, post);
+// const deletePost = (id) =>
+//   axios.delete(`/api/posts/${id}`);
+// Import Axios if you're using Node.js environment
+// const axios = require('axios');
 
-const deletePost = (id) =>
-  axios.delete(`/api/posts/${id}`);
+// Make a POST request
 
-const login = (user) =>
-  axios.post('/api/login', user);
+// const login = axios.post('/api/login', {
+//     // Request body data
+//     username: 'req.body.username',
+//     password: 'req.body.password',
+// })
+// .then(function (response) {
+//     // Handle success
+//     console.log('Response:', response.data);
+// })
+// .catch(function (error) {
+//     // Handle error
+//     console.error('Error:', error);
+// });
 
-document.querySelector('.login-btn').addEventListener('click', (event) => {
-    event.preventDefault();
-    const username = document.querySelector('input[name= "username"]').value;
-    const password = document.querySelector('input[name= "password"]').value;
-    const user = { username, password };
-    console.log(user);
-    // login(user);
-});
 
-document.querySelector('.register-btn').addEventListener('click', (event) => {
-    event.preventDefault();
-    const username = document.querySelector('input[name= "username"]').value;
-    const password = document.querySelector('input[name= "password"]').value;
-    const user = { username, password };
-    console.log(user);
-});
 
-document.querySelector('.create-post').addEventListener('click', async () => {
-    const title = document.querySelector('input[name= "title"]').value;
-    const content = document.querySelector('input[name= "content"]').value;
-    const post = { title, content };
-    console.log(post);
-    // const res = await savePost(post);
-    // console.log(res);
-    // window.location.href = '/dashboard';
-});
+
+// document.querySelector('.create-post').addEventListener('click', async () => {
+//     const title = document.querySelector('input[name= "title"]').value;
+//     const content = document.querySelector('input[name= "content"]').value;
+//     const post = { title, content };
+//     console.log(post);
+//     // const res = await savePost(post);
+//     // console.log(res);
+//     // window.location.href = '/dashboard';
+// });

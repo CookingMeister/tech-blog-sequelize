@@ -1,15 +1,30 @@
 const router = require('express').Router();
-const authenticate = require('../controllers/authController.js');
-const logout = require('../controllers/authController.js');
+const { User } = require('../../models');
+const { authenticate } = require('../../controllers/authController.js'); // link works
+// const logout = require('../../controllers/authController.js');
 
-// Route for handling user login
-router.post('/login', authenticate, (err, req, res, next) => {
-  if (err) {
-    return res.status(500).send({ error: 'Server error' });
-  }
+router.get('/', (req, res) => {
+  res.render('login');
 });
 
-// Route for handling user logout
-router.get('/logout', logout);
+// Route for handling user login
+// router.post('/', authenticate, (err, req, res, next) => {
+//   console.log(req.user);
+//   console.log("Post request clicked")
+//   if (err) {
+//     return res.status(500).send({ error: 'Server error' });
+//   }
+// });
+router.post('/', (req, res) => {
+  console.log('post route clicked')
+  console.log(req.body);
+  // create a new user
+  User.create({
+    username: req.body.username,
+    password: req.body.password,
+ })
+   .then((userData) => res.status(200).json(userData))
+   .catch((err) => res.status(500).json(err));
+});
 
 module.exports = router;
