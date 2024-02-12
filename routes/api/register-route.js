@@ -1,10 +1,22 @@
 const router = require('express').Router();
-// const { User } = require('../../models');
+const { User } = require('../../models');
 // const bcrypt = require('bcrypt');
 // const saltRounds = 10;
 
 router.get('/', (req, res) => {
   res.render('register');
+});
+
+router.post('/', (req, res) => {
+  // console.log('register route clicked')
+  console.log(req.body);
+  // create a new user
+  User.create({
+    username: req.body.username,
+    password: req.body.password,
+ })
+   .then((userData) => res.status(200).json(userData))
+   .catch((err) => res.status(500).json(err));
 });
 
 // Register a new user
@@ -31,7 +43,6 @@ router.get('/', (req, res) => {
 //       );
 //       const newUser = await User.create({
 //         username,
-//         email,
 //         password: hashedPassword,
 //       });
   

@@ -15,16 +15,6 @@ router.get('/', (req, res) => {
 //     return res.status(500).send({ error: 'Server error' });
 //   }
 // });
-router.post('/', (req, res) => {
-  console.log('post route clicked')
-  console.log(req.body);
-  // create a new user
-  User.create({
-    username: req.body.username,
-    password: req.body.password,
- })
-   .then((userData) => res.status(200).json(userData))
-   .catch((err) => res.status(500).json(err));
-});
+
 
 module.exports = router;

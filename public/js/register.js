@@ -5,7 +5,7 @@ document.querySelector('.register-btn').addEventListener('click', (event) => {
     const password = document.querySelector('input[name= "password"]').value;
     const user = { username, password };
     // Make a POST request and save it as a variable
-    const postRequest = axios.post('/api/login', user);
+    const postRequest = axios.post('/api/register', user);
     // Handle the promise returned by the POST request
     postRequest
       .then(function (response) {
