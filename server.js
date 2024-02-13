@@ -4,7 +4,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('passport');
 const sequelize = require('./config/connection.js');
 const routes = require('./routes');
-const path = require('path');
+const flash = require('express-flash');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,7 +15,6 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 
@@ -31,6 +30,8 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
+// flash
+app.use(flash());
 
 // Routes
 

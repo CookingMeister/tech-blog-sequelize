@@ -9,4 +9,4 @@ function formatDate() {
   }
   
   const formattedDate = formatDate();
-  document.getElementById("date2").innerHTML = formattedDate;
+  document.getElementById("date").innerHTML = formattedDate;
