@@ -36,7 +36,7 @@ router.post('/', (req, res, next) => {
     successRedirect: '/home1',
     failureRedirect: '/api/login',
     failureFlash: true, // Enable flash messages for failed login
-  })(req, res, () => {
+  })(req, res, next, () => {
     // If authentication succeeds, this function will be called
     // req.user contains the authenticated user
     req.session.save((err) => {
