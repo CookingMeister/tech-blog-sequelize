@@ -9,7 +9,7 @@ const passport = require('../config/passport.js');
 
 const authenticate = (req, res, next) => {
   passport.authenticate('local', {
-      successRedirect: '/home1',
+      successRedirect: '/',
       failureRedirect: '/api/login',
       failureFlash: true // Enable flash messages for failed login
   })(req, res, next);
