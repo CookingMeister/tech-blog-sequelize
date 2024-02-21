@@ -8,6 +8,7 @@ document.querySelector('.login-btn').addEventListener('click', (event) => {
     postRequest.
         then(function (response) {
             console.log('Response:', response.data);
+            response.redirect('/dashboard');
         })
         .catch(function (error) {
           console.error('Error:', error.message);

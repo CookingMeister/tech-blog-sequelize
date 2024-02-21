@@ -1,7 +1,7 @@
 <%- include('partials/header.ejs') %>
 
-<div class="jumbotron centered custom-jumbotron">
-  <h3 id="date"></h3>
+<!-- <div class="jumbotron centered custom-jumbotron">
+  <h3 id="date" class="home-date"></h3>
   <hr>
   <div class="container text-center">
     <i class="far fa-newspaper fa-4x p-2"></i>
@@ -18,11 +18,34 @@
       >Login</a>
     <a class="btn btn-light btn-lg m-4" href="/create" role="button"
       >Create Posts</a>
-      <a class="btn btn-dark btn-lg m-4" href="/dashboard" role="button"
+      <a class="btn btn-dark btn-lg m-4" href="/api/dashboard" role="button"
       >Dashboard</a>
       <a class="btn btn-light btn-lg m-4" href="/api/user" role="button"
       >User Profile</a>
   </div>
+</div> -->
+<div class="opaque-background p-4">
+<div class="jumbotron custom-jumbotron clear">
+  <h3 id="date" class="home-date"></h3>
+  <hr>
+  <div class="container text-center">
+    <i class="far fa-newspaper fa-4x p-2"></i>
+    <h1 class="display-4 inline">
+      Welcome to The Tech Blog
+    </h1>
+    <i class="far fa-newspaper fa-4x p-2"></i>
+
+    <p class="lead">Share your Posts here on the Tech Blog!</p>
+    <hr />
+    <a class="btn btn-info mx-4" href="/api/register" role="button">Register</a>
+    <a class="btn btn-info mx-4" href="/api/login" role="button">Login</a>
+    <a class="btn btn-info mx-4" href="/create" role="button">Create Posts</a>
+    <a class="btn btn-info mx-4" href="/api/dashboard" role="button">Dashboard</a>
+    <a class="btn btn-info mx-4" href="/api/user" role="button">User Profile</a>
+  </div>
 </div>
+</div>
+
 <script src="./js/date.js"></script>
+
 <%- include('partials/footer.ejs') %>
