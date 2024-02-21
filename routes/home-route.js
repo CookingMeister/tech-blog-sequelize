@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.render('home1');
   });
 
-router.get('/create', (req, res) => {
+router.get('/api/create', (req, res) => {
   res.render('create');
 });
 
