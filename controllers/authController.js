@@ -15,10 +15,4 @@ const authenticate = (req, res, next) => {
   })(req, res, next);
 }
 
-const logout = (req, res) => {
-  req.logout(); // Provided by Passport to clear login session
-  res.redirect('/');
-}
-
-
-module.exports = { authenticate, logout };
+module.exports = { authenticate };

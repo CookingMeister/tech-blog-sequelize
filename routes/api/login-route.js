@@ -18,8 +18,8 @@ router.post('/', (req, res, next) => {
           err
             ? res.status(500).json({ message: 'There was an error logging in' })
             : // Save user data in session
-              (req.session.id = user.id);
-          req.session.username = user.username;
+              (req.session.id = User.id);
+          req.session.username = User.username;
           req.session.loggedIn = true;
           req.session.save((err) => {
             err
@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
                   .status(500)
                   .json({ message: 'There was an error logging in' })
               : console.log('User logged in');
-              res.redirect('/');
+              res.redirect('/api/dashboard');
           });
         });
   })(req, res, next);

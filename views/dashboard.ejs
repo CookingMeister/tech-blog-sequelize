@@ -1,59 +1,46 @@
 <%- include('partials/header.ejs') %>
 
 <div class="background-dash">
+  <a href="/" class="btn btn-info clear m-3 px-3"><i class="far fa-newspaper mr-2"></i>The Tech Blog</a>
   <h1 class="text-center p-5 clear">Dashboard</h1>
-  <button type="button" class="btn btn-info mx-1 showModal clear" data-bs-toggle="modal" data-bs-target="#createPostModal">
+  <button type="button" class="btn btn-info px-3 showModal clear" data-bs-toggle="modal" data-bs-target="#createPostModal">
+    <i class="fas fa-plus mr-2"></i>
     Create Post
   </button>
+  <button type="submit" class="btn btn-info clear logout-btn m-3 px-3">
+    Logout
+    <i class="fas fa-sign-out-alt ml-2 logout-icon"></i>
+  </button>
+
   <div class="container d-flex justify-content-start clear dash-div">
-
     <% if(posts.length > 0) { %>
-      <ul>
-        <% posts.forEach(post => { %>
-          <li>
-            <h3 id="title"><%= post.title %></h3>
-            <p id="content" class="mx-3"><%= post.content %></p>
-            <p class="mx-5">Author: <%= post.UserId %></p>      
-            <button id="update<%= post.id %>" class="btn btn-info mx-1 update-btn" data-id="<%= post.id %>" data-bs-toggle="modal" data-bs-target="#updateModal">
-              Update Post
-            </button>
-            <button id="comment<%= post.id %>" class="btn btn-info mx-1 comment-btn" data-id="<%= post.id %>" >
-              Comment
-            </button>
-            <button id="delete<%= post.id %>" class="btn btn-info mx-1 delete-btn" data-id="<%= post.id %>">
-              Delete Post
-            </button>
-          </li>
-        <% }) %>
-      </ul>
+    <ul>
+      <% posts.forEach(post => { %>
+      <li>
+        <h3 id="title" class="post-title"><%= post.title %></h3>
+        <p id="content" class="mx-3"><%= post.content %></p>
+        <p class="mx-5">Author: <%= post.UserId %></p>
+        <button
+          id="comment<%= post.id %>"
+          class="btn btn-info comment-btn"
+          data-id="<%= post.id %>"
+        >
+        <i class="fas fa-plus mr-2"></i>
+          Comment
+        </button>
+        <button
+          id="delete<%= post.id %>"
+          class="btn btn-danger delete-btn"
+          data-id="<%= post.id %>"
+        ><i class="fas fa-trash mx-2"></i>
+          Delete
+        </button>
+      </li>
+      <% }) %>
+    </ul>
     <% } else { %>
-      <p>No posts found.</p>
+    <p>No posts found.</p>
     <% } %>
-  </div>
-</div>
-
-<!-- Update Post Modal -->
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateModalLabel">Update Post</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="updateTitle">Title</label>
-            <input type="text" class="form-control" id="updateTitle">
-          </div>
-          <div class="form-group">
-            <label for="updateContent">Content</label>
-            <textarea class="form-control" id="updateContent" rows="3"></textarea>
-          </div>
-          <button id="updatePost" type="button" class="btn btn-info">Update Post</button>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 

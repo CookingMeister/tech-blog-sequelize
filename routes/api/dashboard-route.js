@@ -5,10 +5,15 @@ const { check, validationResult } = require('express-validator');
 // Dashboard route
 router.get('/', async (req, res) => {
   try {
+     // If user logged in, include user data
+     if (req.session.loggedIn) {
     // Fetch all posts from the database
     const posts = await Post.findAll();
     // Render dashboard with posts array
     res.render('dashboard', { posts });
+     } else {
+      res.render('login');
+     }
   } catch (error) {
     // Handle errors
     console.error('Error fetching posts:', error);
@@ -29,25 +34,25 @@ router.post('/', async (req, res) => {
 });
 
 // PUT to update a post
-router.put('/:id', check('id').isInt(), async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+// router.put('/:id', check('id').isInt(), async (req, res) => {
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return res.status(400).json({ errors: errors.array() });
+//   }
 
-  try {
-    const updatedPost = await Post.update(req.body, {
-      where: {
-        id: req.body.id,
-      },
-    });
-    res.status(200).json(updatedPost);
-    return;
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+//   try {
+//     const updatedPost = await Post.update(req.body, {
+//       where: {
+//         id: req.body.id,
+//       },
+//     });
+//     res.status(200).json(updatedPost);
+//     return;
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 
 router.delete('/:id', check('id').isInt(), async (req, res) => {
   const errors = validationResult(req);
