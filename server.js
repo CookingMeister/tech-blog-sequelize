@@ -4,7 +4,6 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('./config/passport');
 const sequelize = require('./config/connection.js');
 const routes = require('./routes');
-const flash = require('express-flash');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,11 +29,8 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
-// flash
-app.use(flash());
 
 // Routes
-
 app.use(routes);
 
 // Sync Sequelize models and start the server
