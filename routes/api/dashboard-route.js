@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { User, Post } = require('../../models');
 const { check, validationResult } = require('express-validator');
 
 // Dashboard route
@@ -9,8 +9,13 @@ router.get('/', async (req, res) => {
      if (req.session.loggedIn) {
     // Fetch all posts from the database
     const posts = await Post.findAll();
+    const userData =
+        (await User.findOne({ where: { id: req.session.passport.user } })) || [];
     // Render dashboard with posts array
-    res.render('dashboard', { posts });
+    res.render(
+      'dashboard',
+      { posts, userData, }
+      );
      } else {
       res.render('login');
      }
@@ -25,8 +30,11 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create(req.body);
-    res.status(201).json(newPost);
-    return;
+    if (newPost) {
+      console.log("newPost was successful");
+    return res.redirect('/api/dashboard');
+    }
+    return res.status(400).json({ message: 'There was an error posting' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

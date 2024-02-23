@@ -1,31 +1,13 @@
 <%- include('partials/header.ejs') %>
 
-<!-- <div class="jumbotron centered custom-jumbotron">
-  <h3 id="date" class="home-date"></h3>
-  <hr>
-  <div class="container text-center">
-    <i class="far fa-newspaper fa-4x p-2"></i>
-    <h1 class="display-3 p-2" style="display: inline">
-      Welcome to The Tech Blog
-    </h1>
-    <i class="far fa-newspaper fa-4x p-2"></i>
-
-    <p class="lead">Share your Posts here on the Tech Blog!</p>
-    <hr />
-    <a class="btn btn-light btn-lg m-4" href="/api/register" role="button"
-      >Register</a>
-    <a class="btn btn-dark btn-lg m-4" href="/api/login" role="button"
-      >Login</a>
-    <a class="btn btn-light btn-lg m-4" href="/create" role="button"
-      >Create Posts</a>
-      <a class="btn btn-dark btn-lg m-4" href="/api/dashboard" role="button"
-      >Dashboard</a>
-      <a class="btn btn-light btn-lg m-4" href="/api/user" role="button"
-      >User Profile</a>
-  </div>
-</div> -->
 <div class="opaque-background p-4">
+<a href="/" class="btn btn-info clear home m-2 px-3"><i class="far fa-newspaper mr-2"></i>The Tech Blog</a>
+<button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
+  Logout
+  <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
+</button>
 <div class="jumbotron custom-jumbotron clear">
+
   <h3 id="date" class="home-date"></h3>
   <hr>
   <div class="container text-center">
@@ -43,6 +25,32 @@
     <a class="btn btn-info mx-4" href="/api/user" role="button">User Profile</a>
   </div>
 </div>
+
+<div class="container d-flex justify-content-start clear home-posts mt-4">
+  <% if(posts.length > 0) { %>
+  <ul>
+    <% posts.forEach(post => { %>
+    <li>
+      <h3 id="title" class="post-title"><%= post.title %></h3>
+      <!-- <p id="content" class="mx-3"><%= post.content %></p> -->
+      <p class="mx-5">Author: <%= post.userId %></p>
+      <button
+        id="comment<%= post.id %>"
+        class="btn btn-info comment-btn"
+        data-id="<%= post.id %>"
+      >
+      <i class="fas fa-plus mr-2"></i>
+        Comment
+      </button>
+    </li>
+    <% }) %>
+  </ul>
+  <% } else { %>
+  <p>No posts found.</p>
+  <% } %>
+</div>
+</div>
+
 </div>
 
 <script src="./js/date.js"></script>

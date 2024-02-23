@@ -44,8 +44,9 @@ body {
 .custom-jumbotron {
   width: 80%;
   margin: auto;
-  height: 400px;
-  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 3vh;
+  height: 360px;
+  background-color: rgba(0, 0, 0, 0.6);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -55,9 +56,15 @@ body {
 
 .dash-div {
   background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
+  border-radius: 5px;
 }
-
+.home-posts {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+.home-posts ul {
+  color: white;
+}
 .showModal {
   position: relative;
   left: 75vw;
@@ -68,13 +75,18 @@ body {
   color: #f0f;
   font-size: 1.2rem;
   text-align: right;
+  margin-top: -3.5vh;
 }
 
-.jumbotron h1, .jumbotron p, i, h1 {
+.jumbotron h1,
+.jumbotron p,
+i,
+h1 {
   color: #0f0;
   margin: 0;
 }
-.login, .register {
+.login,
+.register {
   color: #0f0;
   margin-bottom: 20px;
 }
@@ -82,7 +94,7 @@ body {
   display: inline;
 }
 .jumbotron a.btn {
- margin-top: 30px;
+  margin-top: 30px;
 }
 
 .post-title {
@@ -102,5 +114,10 @@ li .delete-btn {
 .logout-btn {
   position: absolute;
   right: 0;
+  top: 0;
+}
+.home {
+  position: absolute;
+  left: 0;
   top: 0;
 }

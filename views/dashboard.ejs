@@ -1,9 +1,16 @@
 <%- include('partials/header.ejs') %>
 
 <div class="background-dash">
-  <a href="/" class="btn btn-info clear m-3 px-3"><i class="far fa-newspaper mr-2"></i>The Tech Blog</a>
+  <a href="/" class="btn btn-info clear m-3 px-3"
+    ><i class="far fa-newspaper mr-2"></i>The Tech Blog</a
+  >
   <h1 class="text-center p-5 clear">Dashboard</h1>
-  <button type="button" class="btn btn-info px-3 showModal clear" data-bs-toggle="modal" data-bs-target="#createPostModal">
+  <button
+    type="button"
+    class="btn btn-info px-3 showModal clear"
+    data-bs-toggle="modal"
+    data-bs-target="#createPostModal"
+  >
     <i class="fas fa-plus mr-2"></i>
     Create Post
   </button>
@@ -12,6 +19,7 @@
     <i class="fas fa-sign-out-alt ml-2 logout-icon"></i>
   </button>
 
+  <!-- Posts Section -->
   <div class="container d-flex justify-content-start clear dash-div">
     <% if(posts.length > 0) { %>
     <ul>
@@ -19,20 +27,23 @@
       <li>
         <h3 id="title" class="post-title"><%= post.title %></h3>
         <p id="content" class="mx-3"><%= post.content %></p>
-        <p class="mx-5">Author: <%= post.UserId %></p>
+        <p class="createdOn"><%= post.createdAt.toDateString() %></p>
         <button
-          id="comment<%= post.id %>"
-          class="btn btn-info comment-btn"
+          id="edit<%= post.id %>"
+          class="btn btn-info edit-btn"
           data-id="<%= post.id %>"
+          data-bs-toggle="modal"
+          data-bs-target="#editModal<%= post.id %>"
         >
-        <i class="fas fa-plus mr-2"></i>
-          Comment
+          <i class="fas fa-plus mr-2"></i>
+          Edit
         </button>
         <button
           id="delete<%= post.id %>"
           class="btn btn-danger delete-btn"
           data-id="<%= post.id %>"
-        ><i class="fas fa-trash mx-2"></i>
+        >
+          <i class="fas fa-trash mx-2"></i>
           Delete
         </button>
       </li>
@@ -42,58 +53,93 @@
     <p>No posts found.</p>
     <% } %>
   </div>
-</div>
 
-<!-- Create Post Modal -->  
-<div
-  class="modal fade"
-  id="createPostModal"
-  tabindex="-1"
-  aria-labelledby="createPostModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="createPostModalLabel">Create Post</h5>
-        <button
-          type="button"
-          class="btn btn-info btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >X</button>
+<!-- Edit Modals -->
+  <% posts.forEach(post => { %>
+
+    <div class="modal fade" id="editModal<%= post.id %>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editModalLabel">Edit Post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="title" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" id="title" value="<%= post.title %>">
+              </div>
+              <div class="mb-3">
+                <label for="content" class="col-form-label">Content:</label>
+                <textarea class="form-control" id="content"><%= post.content %></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Update Post</button>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <form action="/api/dashboard" method="POST">
-          <div class="form-group">
-            <label for="title">Title</label>
-            <input
-              type="text"
-              class="form-control"
-              id="title"
-              name="title"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea
-              class="form-control"
-              id="content"
-              name="content"
-              rows="3"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-info m-4 create-post">
-            Create Post
+    </div>
+  
+  <% }) %>
+  
+  <!-- Create Post Modal -->
+  <div
+    class="modal fade"
+    id="createPostModal"
+    tabindex="-1"
+    aria-labelledby="createPostModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createPostModalLabel">Create Post</h5>
+          <button
+            type="button"
+            class="btn btn-info btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            X
           </button>
-        </form>
+        </div>
+        <div class="modal-body">
+          <form>
+            <input type="hidden" id="userId" value="<%- userData.id %>" />
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="create-title"
+                name="title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea
+                class="form-control"
+                id="create-content"
+                name="content"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-info m-4 create-post">
+              Create Post
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+
+  <script src="../js/dashboard.js"></script>
+
+  <%- include('partials/footer.ejs') %>
 </div>
-
-<script src="../js/dashboard.js"></script>
-
-<%- include('partials/footer.ejs') %>
