@@ -25,10 +25,15 @@
 
     <p class="lead">Share your Posts here on the Tech Blog!</p>
     <hr />
+    <% if (!user) { %>
     <a class="btn btn-info mx-4" href="/api/register" role="button">Register</a>
     <a class="btn btn-info mx-4" href="/api/login" role="button">Login</a>
     <a class="btn btn-info mx-4" href="/api/dashboard" role="button">Dashboard</a>
     <a class="btn btn-info mx-4" href="/api/user" role="button">User Profile</a>
+    <% } else { %>
+    <a class="btn btn-info mx-4" href="/api/dashboard" role="button">Dashboard</a>
+    <a class="btn btn-info mx-4" href="/api/user" role="button">User Profile</a>
+    <% } %>
   </div>
 </div>
 
