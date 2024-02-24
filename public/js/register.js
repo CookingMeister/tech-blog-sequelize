@@ -10,6 +10,7 @@ document.querySelector('.register-btn').addEventListener('click', (event) => {
     postRequest
       .then(function (response) {
         console.log('Response:', response.data);
+        window.location.replace('/api/dashboard');
       })
       .catch(function (error) {
         console.error('Error:', error.message);

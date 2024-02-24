@@ -2,10 +2,16 @@
 
 <div class="opaque-background p-4">
 <a href="/" class="btn btn-info clear home m-2 px-3"><i class="far fa-newspaper mr-2"></i>The Tech Blog</a>
-<button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
-  Logout
-  <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
-</button>
+<% if (user) { %>
+  <p class="clear yellow text-center welcome">Welcome <%= user.username %>!</p>
+  <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
+    Logout
+    <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
+  </button>
+<% } else { %>
+  <p class="clear yellow text-right welcome">You are not logged in!</p>
+<% } %>
+
 <div class="jumbotron custom-jumbotron clear">
 
   <h3 id="date" class="home-date"></h3>
@@ -53,6 +59,7 @@
 
 </div>
 
+<script src="./js/home.js"></script>
 <script src="./js/date.js"></script>
 
 <%- include('partials/footer.ejs') %>

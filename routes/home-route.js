@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   // Fetch all posts from the database
   const posts =  await Post.findAll();
   // Render dashboard with posts array
-  res.render('home1', { posts });
+  res.render('home1', { posts, user: req.user });
     // res.render('home1');
   } catch (error) {
     // Handle errors

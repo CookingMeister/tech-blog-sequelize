@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
             username,
             password: hashedPassword,
           }).then((newUser) => {
+            req.session.loggedIn = true;
             req.login(newUser, (err) => {
               if (err) {
                 console.error(err);

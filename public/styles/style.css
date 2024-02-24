@@ -121,3 +121,10 @@ li .delete-btn {
   left: 0;
   top: 0;
 }
+.yellow {
+  color: #0f0;
+}
+.welcome {
+  /* margin-right: 6vw; */
+  margin-top: -7px;
+}
