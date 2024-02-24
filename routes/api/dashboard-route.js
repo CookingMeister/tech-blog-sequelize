@@ -8,7 +8,11 @@ router.get('/', async (req, res) => {
      // If user logged in, include user data
      if (req.session.loggedIn) {
     // Fetch all posts from the database
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      where: {
+        UserId: req.session.passport.user
+      }
+    });
     const userData =
         (await User.findOne({ where: { id: req.session.passport.user } })) || [];
     // Render dashboard with posts array
