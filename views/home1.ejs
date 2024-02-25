@@ -42,27 +42,34 @@
   <div class="container d-flex justify-content-start clear home-posts mt-4">
 
     <% if(posts.length > 0) { %>
-      <ul>
+    <ul>
       <% posts.forEach(post => { %>
-        <li>
-          <h3 id="title" class="post-title"><%= post.title %></h3>
-          <!-- <p id="content" class="mx-3"><%= post.content %></p> -->
-          <p class="mx-5">Author: <%= post.userId %></p>
-          <button
-            id="comment<%= post.id %>"
-            class="btn btn-info comment-btn"
-            data-id="<%= post.id %>"
-          >
+      <!-- Change each p to an li for spacing preferences and ul to d-flex -->
+      <li>
+        <h3 id="title"><%= post.title %></h3>
+        <!-- <p id="content" class="mx-3"><%= post.content %></p> -->
+          <% const user = users.find(u => u.id === post.userId); %>
+          <% if (user) { %>
+            <p class="mx-5">Author: <%= user.username %></p>
+          <% } else { %>
+            <p class="mx-5">Author: Unknown</p>
+          <% } %>
+        <p class="createdOn"><%= post.updatedAt.toDateString() %></p>
+        <button
+          id="comment<%= post.id %>"
+          class="btn btn-info comment-btn"
+          data-id="<%= post.id %>"
+        >
           <i class="fas fa-plus mr-2"></i>
-            Comment
-          </button>
-        </li>
+          Comment
+        </button>
+      </li>
       <% }) %>
-      </ul>
+    </ul>
     <% } else { %>
-      <p>No posts found.</p>
+    <p>No posts found.</p>
     <% } %>
-  </div>
+</div>
 </div>
 
 <script src="./js/home.js"></script>

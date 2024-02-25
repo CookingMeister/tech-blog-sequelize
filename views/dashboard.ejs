@@ -27,7 +27,7 @@
       <li>
         <h3 id="title" class="post-title"><%= post.title %></h3>
         <p id="content" class="mx-3"><%= post.content %></p>
-        <p class="createdOn"><%= post.createdAt.toDateString() %></p>
+        <p class="createdOn"><%= post.updatedAt.toDateString() %></p>
         <button
           id="edit<%= post.id %>"
           class="btn btn-info edit-btn"
