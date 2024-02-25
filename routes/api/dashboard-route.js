@@ -45,27 +45,29 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT to update a post
-// router.put('/:id', check('id').isInt(), async (req, res) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
+// PUT to update a post by ID
+router.put('/', check('id').isInt(), async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
-//   try {
-//     const updatedPost = await Post.update(req.body, {
-//       where: {
-//         id: req.body.id,
-//       },
-//     });
-//     res.status(200).json(updatedPost);
-//     return;
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+  try {
+    const updatedPost = await Post.update(req.body, {
+      where: {
+        id: req.body.id,
+      },
+    });
+    console.log('Updated post:', updatedPost);
+    res.status(200).json(updatedPost);
+    return;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
+// DELETE a post by ID
 router.delete('/:id', check('id').isInt(), async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
