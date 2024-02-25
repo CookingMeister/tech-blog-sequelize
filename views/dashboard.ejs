@@ -4,6 +4,9 @@
   <a href="/" class="btn btn-info clear m-3 px-3"
     ><i class="far fa-newspaper mr-2"></i>The Tech Blog</a
   >
+  <% if (userData) { %>
+    <p class="clear yellow text-center welcome">Welcome <%= userData.username %>!</p>
+    <% } %>
   <h1 class="text-center p-5 clear">Dashboard</h1>
   <button
     type="button"

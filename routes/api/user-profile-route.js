@@ -9,8 +9,15 @@ router.get('/', async (req, res) => {
     // if (!req.isAuthenticated()) {
     //   return res.status(401).json({ error: 'Unauthorized' });
     // }
-    const users = await User.findAll();
-    res.render('user.ejs', { users });
+    // If user logged in, include user data
+    if (req.session.loggedIn) {
+      // Fetch all posts from the database
+      const user =
+        (await User.findOne({ where: { id: req.session.passport.user } })) ||
+        [];
+      // Render dashboard with posts array
+      res.render('user', { user });
+    }
   } catch (error) {
     console.error('Error fetching users:', error);
     res.status(500).json({ error: 'Error fetching users' });
@@ -28,14 +35,6 @@ router.get('/:id', async (req, res) => {
     res.status(500).send('Error fetching user');
   }
 });
-  
-
-
-
-
-
-
-
 
 // Update user profile
 router.put('/:id', async (req, res) => {
@@ -48,7 +47,7 @@ router.put('/:id', async (req, res) => {
 
   try {
     const user = await User.findByPk(id);
-// Update only the fields that were sent in the request
+    // Update only the fields that were sent in the request
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     } else {
@@ -58,7 +57,6 @@ router.put('/:id', async (req, res) => {
     await User.update({ username }, { where: { id } });
     console.log('User updated');
     res.redirect('/');
-    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
