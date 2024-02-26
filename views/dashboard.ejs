@@ -1,13 +1,20 @@
 <%- include('partials/header.ejs') %>
 
 <div class="background-dash">
-  <a href="/" class="btn btn-info clear m-3 px-3"
-    ><i class="far fa-newspaper mr-2"></i>The Tech Blog</a
-  >
+  
   <% if (userData) { %>
-    <p class="clear yellow text-center welcome">Welcome <%= userData.username %>!</p>
+    <% let atIndex = userData.username.indexOf('@'); %>
+    <p class="clear yellow text-center pt-3">Welcome <%= userData.username.slice(0, atIndex) %>!</p>
     <% } %>
-  <h1 class="text-center p-5 clear">Dashboard</h1>
+  <a href="/" class="btn btn-info clear home m-2">
+    <i class="far fa-newspaper mr-2"></i>
+    The Tech Blog
+  </a>
+  <button type="submit" class="btn btn-info clear logout-btn m-2">
+    Logout
+    <i class="fas fa-sign-out-alt ml-2 logout-icon"></i>
+  </button>
+  <h1 class="text-center p-5 yellow clear">Dashboard</h1>
   <button
     type="button"
     class="btn btn-info px-3 showModal clear"
@@ -17,10 +24,7 @@
     <i class="fas fa-plus mr-2"></i>
     Create Post
   </button>
-  <button type="submit" class="btn btn-info clear logout-btn m-3 px-3">
-    Logout
-    <i class="fas fa-sign-out-alt ml-2 logout-icon"></i>
-  </button>
+
 
   <!-- Posts Section -->
   <div class="container d-flex justify-content-start clear dash-div">
@@ -38,16 +42,8 @@
           data-bs-toggle="modal"
           data-bs-target="#editModal<%= post.id %>"
         >
-          <i class="fas fa-plus mr-2"></i>
+          <i class="fas fa-edit mr-1"></i>
           Edit
-        </button>
-        <button
-          id="delete<%= post.id %>"
-          class="btn btn-danger delete-btn"
-          data-id="<%= post.id %>"
-        >
-          <i class="fas fa-trash mx-2"></i>
-          Delete
         </button>
       </li>
       <% }) %>
@@ -101,10 +97,17 @@
           </form>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
           <button type="button" class="btn btn-info update-btn">
             Update Post
           </button>
+          <button
+          id="delete<%= post.id %>"
+          class="btn btn-danger delete-btn"
+          data-id="<%= post.id %>"
+        >
+          <i class="fas fa-trash mx-1"></i>
+          Delete
+        </button>
         </div>
       </div>
     </div>

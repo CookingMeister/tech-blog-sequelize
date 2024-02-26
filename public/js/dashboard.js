@@ -71,7 +71,7 @@ updatePost.addEventListener('click', (event) => {
 });
 
 // Delete post by id
-const deletePost = document.querySelector('.container');
+const deletePost = document.querySelector('.modal');
 deletePost.addEventListener('click', (event) => {
   if (event.target.classList.contains('delete-btn')) {
     const postId = event.target.getAttribute('data-id');

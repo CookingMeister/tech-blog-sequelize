@@ -1,11 +1,13 @@
 <%- include('partials/header.ejs') %>
 
-<div class="opaque-background p-4">
-
-  <a href="/" class="btn btn-info clear home m-2 px-3"><i class="far fa-newspaper mr-2"></i>The Tech Blog</a>
-
+<div class="opaque-background p-4">  
+  
   <% if (user) { %>
-    <p class="clear yellow text-center welcome">Welcome <%= user.username %>!</p>
+    <% let atIndex = user.username.indexOf('@'); %>
+    <p class="clear yellow text-center welcome">Welcome <%= user.username.slice(0, atIndex) %>!</p>
+    <a href="/" class="btn btn-info clear home m-2"><i class="far fa-newspaper mr-2"></i>
+      The Tech Blog
+    </a>
     <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
       Logout
       <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
@@ -18,12 +20,12 @@
     <h3 id="date" class="home-date"></h3>
     <hr>
       <div class="container text-center">
-        <i class="far fa-newspaper fa-4x p-2"></i>
-        <h1 class="display-4 inline">
+        <i class="far fa-newspaper fa-4x px-2 mr-2 yellow"></i>
+        <h1 class="display-4 inline yellow">
         Welcome to The Tech Blog
         </h1>
-        <i class="far fa-newspaper fa-4x p-2"></i>
-        <p class="lead">Share your Posts here on the Tech Blog!</p>
+        <i class="far fa-newspaper fa-4x px-2 yellow"></i>
+        <p class="lead yellow mt-3">Share your Posts here on the Tech Blog!</p>
         <hr />
         <% if (!user) { %>
           <a class="btn btn-info mx-4" href="/api/register" role="button">Register</a>
@@ -45,11 +47,14 @@
         <h4 id="title" class="mt-3"><%= post.title %></h4>
           <% const user = users.find(u => u.id === post.userId); %>
           <% if (user) { %>
-            <p class="mx-5 pt-1">Author: <%= user.username %></p>
+            <% let atIndex = user.username.indexOf('@'); %>
+            <p class="mx-5 pt-1">Posted by <%= user.username.slice(0, atIndex) %>
+              <span class="createdOn">on <%= post.updatedAt.toDateString() %></span>
+            </p>
           <% } else { %>
             <p class="mx-5">Author: Unknown</p>
           <% } %>
-        <p class="createdOn"><%= post.updatedAt.toDateString() %></p>
+        
         <button
           id="comment<%= post.id %>"
           class="btn btn-info comment-btn"
