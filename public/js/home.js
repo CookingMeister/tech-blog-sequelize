@@ -30,3 +30,16 @@ commentBtns.forEach((btn) => {
 
   });
 });
+
+// Modal content listener
+const modalBtns = document.querySelectorAll('.comment-modal-btn');
+modalBtns.forEach((btn) => {
+  btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const postId = btn.getAttribute('data-id');
+    console.log('comment clicked on post:', postId);
+    const modal = btn.closest('.modal');
+    const comment = modal.querySelector('.comment-input').value;
+    console.log(comment);
+  });
+});

@@ -164,3 +164,7 @@ li {
   width: 50vw;
   padding-bottom: 1vh;
 }
+
+.comment-modal {
+  padding-top: 250px;
+}

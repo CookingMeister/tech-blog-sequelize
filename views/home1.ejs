@@ -76,6 +76,8 @@
           class="btn btn-info comment-btn m-2"
           data-id="<%= post.id %>"
           style="display: none"
+          data-bs-toggle="modal"
+          data-bs-target="#commentModal<%= post.id %>"
         >
           <i class="fas fa-plus-square mx-1"></i>
           Comment
@@ -87,6 +89,54 @@
     <p>No posts found.</p>
     <% } %>
   </div>
+
+  // -- Comment Modal -->
+  <% posts.forEach(post => { %>
+
+  <div
+    class="modal fade comment-modal"
+    id="commentModal<%= post.id %>"
+    tabindex="-1"
+    aria-labelledby="commentModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title fs-5" id="commentModalLabel">Add Comment</h3>
+          <button
+            type="button"
+            class="btn btn-info btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            X
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <input type="hidden" class="post-id" data-id="<%= post.id %>"/>
+            <div class="mb-3">
+              <label for="comment" class="col-form-label"></label>
+              <input
+                type="text"
+                class="form-control comment-input"
+                id="comment"
+                >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info comment-modal-btn" data-id="<%= post.id %>">
+            Add Comment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+
+  
 </div>
 
 <script src="./js/home.js"></script>
