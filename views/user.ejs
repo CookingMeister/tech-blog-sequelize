@@ -2,15 +2,18 @@
 
 <div class="background-user">
 
-  <h1 class="text-center clear p-5">User Profile</h1>
+  <h1 class="text-center yellow clear p-5">User Profile</h1>
   <div class="container clear profile pt-5">
   
   <% if (user) { %>
     <ul class="d-flex justify-content-center">
         <li class="mb-3">ID: <%= user.id %> <br>
           Username: <%= user.username %>
-          <button class="btn btn-info editDetails  py-1 ml-5" data-id="<%= user.id %>" data-username="<%= user.username %>">
-            Edit Details
+          <button class="btn btn-info editDetails py-1 ml-5"
+            data-id="<%= user.id %>"
+            data-username="<%= user.username %>">
+            <i class="fas fa-edit mr-1"></i>
+            Edit
           </button>
         </li>
     </ul>
@@ -24,13 +27,15 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title pink" id="editModalLabel">Edit User Details</h4>
+          <h4 class="modal-title yellow" id="editModalLabel">Edit User</h4>
           <button type="button" class="btn btn-info btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
         </div>
         <div class="modal-body">
-          <h5>User Profile</h5>
+          <h5 class="mb-3">User Profile</h5>
           <div id="modalContent"></div>
-          <button class="btn btn-info delete-btn">DELETE</button>
+          <button class="btn btn-danger delete-btn">
+            <i class="fas fa-trash mr-1"></i>
+            Delete</button>
         </div>
         
       </div>
