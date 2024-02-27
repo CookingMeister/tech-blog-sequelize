@@ -1,6 +1,5 @@
 body {
   font-family: 'Verdana', sans-serif;
-  /* backdrop-filter: blur(3px); */
 }
 
 .opaque-background {
@@ -10,6 +9,7 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
 .opaque-background::before {
   content: '';
   position: absolute;
@@ -98,7 +98,6 @@ body {
 }
 
 .home-date {
-  color: #f0f;
   font-size: 1.2rem;
   text-align: right;
   margin-top: -3.5vh;
@@ -139,9 +138,11 @@ li {
 .yellow {
   color: #0f0;
 }
+
 .pink {
   color: #f0f;
 }
+
 .welcome {
   margin-top: -7px;
 }
@@ -168,11 +169,19 @@ li {
 .comment-modal {
   padding-top: 250px;
 }
+
 .comment-div p {
   display: none;
   color: antiquewhite;
 }
 
+.footer {
+  color: black;
+  height: 60px;
+  margin-top: -60px;
+}
+
+/* Media Queries */
 @media screen and (max-width: 1333px) {
   .custom-jumbotron {
     height: auto;
@@ -195,4 +204,9 @@ li {
   .custom-jumbotron {
     transform: scale(0.88);
   }
+
+  .showModal {
+    left: 66%;
+  }
+
 }

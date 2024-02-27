@@ -25,7 +25,7 @@
 
   <!-- Jumbotron -->
   <div class="jumbotron custom-jumbotron clear">
-    <h3 id="date" class="home-date"></h3>
+    <h3 id="date" class="home-date pink"></h3>
     <hr />
     <div class="container text-center">
       <i class="far fa-newspaper fa-4x px-2 mr-2 yellow"></i>
@@ -154,7 +154,10 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info comment-modal-btn" data-id="<%= post.id %>" data-user-id="<%= user.id %>">
+          <button type="button" class="btn btn-info comment-modal-btn" data-id="<%= post.id %>"
+            <% if (user) { %>
+              data-user-id="<%= user.id %>"
+            <% } %>>
             Add Comment
           </button>
         </div>
@@ -163,7 +166,6 @@
   </div>
   <% }) %>
 
-  
 </div>
 
 <script src="./js/home.js"></script>

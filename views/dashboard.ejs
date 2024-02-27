@@ -27,7 +27,7 @@
 
 
   <!-- Posts Section -->
-  <div class="container d-flex justify-content-start clear dash-div">
+  <div class="container d-flex justify-content-start clear dash-div mb-5">
     <% if(posts.length > 0) { %>
     <ul>
       <% posts.forEach(post => { %>
@@ -72,7 +72,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title fs-5" id="editModalLabel">Edit Post</h2>
+          <h3 class="modal-title fs-5" id="editModalLabel">Edit Post</h3>
           <button
             type="button"
             class="btn btn-info btn-close"
@@ -86,7 +86,7 @@
           <form>
             <input type="hidden" class="post-id" data-id="<%= post.id %>" value="<%= post.id %>" />
             <div class="mb-3">
-              <label for="title" class="col-form-label">Title:</label>
+              <label for="title" class="col-form-label">Title</label>
               <input
                 type="text"
                 class="form-control"
@@ -95,7 +95,7 @@
               />
             </div>
             <div class="mb-3">
-              <label for="content" class="col-form-label">Content:</label>
+              <label for="content" class="col-form-label">Content</label>
               <textarea class="form-control" id="update-content">
               <%= post.content %></textarea
               >
@@ -132,7 +132,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="createPostModalLabel">Create Post</h5>
+          <h3 class="modal-title" id="createPostModalLabel">Create Post</h3>
           <button
             type="button"
             class="btn btn-info btn-close"
@@ -165,11 +165,13 @@
                 required
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-info m-4 create-post">
-              Create Post
-            </button>
           </form>
         </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-info create-post">
+              Create Post
+            </button>
+        </div>        
       </div>
     </div>
   </div>
