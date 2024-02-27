@@ -6,8 +6,13 @@
   <p class="clear yellow text-center welcome">
     Welcome <%= user.username.slice(0, atIndex) %>!
   </p>
+    <!-- Logout button -->
+    <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
+      Logout
+      <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
+    </button>
   <% } else { %>
-  <p class="clear yellow text-right welcome">You are not logged in!</p>
+  <p class="clear yellow text-right welcome">Please Register or Login!</p>
   <% } %>
 
   <!-- Home button -->
@@ -16,11 +21,7 @@
     The Tech Blog
   </a>
 
-  <!-- Logout button -->
-  <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
-    Logout
-    <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
-  </button>
+
 
   <!-- Jumbotron -->
   <div class="jumbotron custom-jumbotron clear">
@@ -32,6 +33,7 @@
       <i class="far fa-newspaper fa-4x px-2 yellow"></i>
       <p class="lead yellow mt-3">Share your Posts here on the Tech Blog!</p>
       <hr />
+      <!-- Conditional Display of Buttons -->
       <% if (!user) { %>
       <a class="btn btn-info mx-4" href="/api/register" role="button"
         >Register</a
@@ -55,22 +57,47 @@
   <div class="container clear home-posts my-4">
     <% if(posts.length > 0) { %>
     <ul>
+      <!-- Show Post Titles and Dates -->
       <% posts.forEach(post => { %>
+        <!-- If clicked Show Content, Author, Add Comment Button and Comments made on Posts -->
       <li class="home-post-li p-3" onclick="togglePostContent(this)">
         <div class="d-flex justify-content-between">
-          <h4 id="title" class="mt-3"><%= post.title %></h4>
-          <% const user = users.find(u => u.id === post.userId); %> <% if (user)
-          { %> <% let atIndex = user.username.indexOf('@'); %>
-          <p class="pt-1">
+          <h4 id="title" class="mt-3 yellow"><%= post.title %></h4>
+          <% const user = users.find(u => u.id === post.userId); %>
+          <% if (user) { %>
+            <% let atIndex = user.username.indexOf('@'); %>
+            <p class="pt-1">
             Posted by <%= user.username.slice(0, atIndex) %>
             <span class="createdOn"
-              >on <%= post.updatedAt.toDateString() %></span>
-          </p>
+              >on <%= post.updatedAt.getMonth() +1 %>/<%= post.updatedAt.getDate() %>/<%= post.updatedAt.getFullYear() %></span>
+            </p>
           <% } else { %>
-          <p class="mx-5">Author: Unknown</p>
+            <p class="mx-5">Author: Unknown</p>
           <% } %>
         </div>
         <p class="post-content" style="display: none"><%= post.content %></p>
+        <% if (comments.length > 0) { %>
+          <div class="comment-div d-flex justify-content-center">
+            <!-- Only show Comments for that Post by matching ID -->
+            <% comments.filter(c => c.postId === post.id).forEach(c => { %>
+              <p class="comment-content p-1">
+                <em>
+                '<%= c.comment %>''
+                </em>
+              </p>
+              <% const author = users.find(u => u.id === c.userId); %>
+              <% let atIndex = author.username.indexOf('@'); %>
+              <p class="comment-author mx-1 p-1">
+                <em>
+                  from <%= author.username.slice(0, atIndex) %>
+                  <span>
+                     on <%= c.createdAt.getMonth() + 1 %>/<%= c.createdAt.getDate() %>/<%= c.createdAt.getFullYear() %>
+                  </span>
+                </em>
+              </p>
+            <% }) %>            
+          </div>
+          <% } %>
         <button
           id="comment<%= post.id %>"
           class="btn btn-info comment-btn m-2"
@@ -86,11 +113,11 @@
       <% }) %>
     </ul>
     <% } else { %>
-    <p>No posts found.</p>
+    <p class="pink p-2">No posts found.</p>
     <% } %>
   </div>
 
-  // -- Comment Modal -->
+  <!-- Comment Modal -->
   <% posts.forEach(post => { %>
 
   <div
@@ -127,7 +154,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info comment-modal-btn" data-id="<%= post.id %>">
+          <button type="button" class="btn btn-info comment-modal-btn" data-id="<%= post.id %>" data-user-id="<%= user.id %>">
             Add Comment
           </button>
         </div>

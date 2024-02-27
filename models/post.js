@@ -18,10 +18,10 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    UserId: {
+    userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User',
+        model: 'user',
         key: 'id',
       },
     },

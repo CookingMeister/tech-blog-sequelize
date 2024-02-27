@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const { check, validationResult } = require('express-validator');
 
 // Dashboard route
@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     // Fetch all posts from the database
     const posts = await Post.findAll({
       where: {
-        UserId: req.session.passport.user
+        userId: req.session.passport.user
       }
     });
     const userData =
@@ -75,6 +75,11 @@ router.delete('/:id', check('id').isInt(), async (req, res) => {
   }
 
   try {
+    // const deleteComment = await Comment.destroy({
+    //   where: {
+    //     postId: req.params.id,
+    //   },
+    // });
     const { rowsDeleted } = await Post.destroy({
       where: {
         id: req.params.id,

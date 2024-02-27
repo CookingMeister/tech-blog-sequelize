@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('./../models');
+const { Post, User, Comment } = require('./../models');
 
 // Route to render the home page using EJS
 router.get('/', async (req, res) => {
@@ -7,9 +7,9 @@ router.get('/', async (req, res) => {
   // Fetch all posts from the database
   const posts =  await Post.findAll();
   const users = await User.findAll();
+  const comments = await Comment.findAll();
   // Render dashboard with posts array
-  res.render('home1', { posts, users, user: req.user });
-    // res.render('home1');
+  res.render('home', { posts, users, user: req.user, comments });
   } catch (error) {
     // Handle errors
     console.error('Error fetching posts:', error);
