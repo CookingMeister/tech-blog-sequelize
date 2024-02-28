@@ -35,11 +35,8 @@ commentBtns.forEach((btn) => {
     console.log(userId);
     if (!userId) {
       // User is not logged in, redirect to login page
-      console.log('User is not logged in');
       return window.location.href = '/api/login';
-  }
-    const postId = btn.getAttribute('data-id');
-    console.log('comment clicked on post:', postId);
+    }
   });
 });
 
@@ -52,7 +49,7 @@ modalBtns.forEach((btn) => {
     const userId = btn.getAttribute('data-user-id');
     console.log('comment clicked on post:', postId, "from user:", userId);
     const modal = btn.closest('.modal');
-    const comment = modal.querySelector('.comment-input').value;
+    const comment = modal.querySelector('.comment-input').value.trim();
     console.log(comment);
     const commentPrompt = axios.post('/api/comment', {
       userId: userId,

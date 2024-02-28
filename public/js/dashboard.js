@@ -22,14 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const createPost = document.querySelector('.create-post');
   createPost.addEventListener('click', (e) => {
     e.preventDefault();
-    const title = document.querySelector('input[id="create-title"]').value;
+    const title = document.querySelector('input[id="create-title"]').value.trim();
     const content = document.querySelector(
       'textarea[id="create-content"]'
-    ).value;
-    console.log(title, content);
+    ).value.trim();
+    const alertMessage = document.getElementById('alertMessage');
+    
     if (!title || !content) {
-      console.log('Title and content cannot be empty');
+      alertMessage.classList.remove('d-none'); // Show the alert
+        setTimeout(() => {
+        alertMessage.classList.add('d-none');
+      }, 5000);
       return;
+    } else {
+      alertMessage.classList.add('d-none'); // Hide the alert
     }
     const userId = document.querySelector('#userId').value;
     const postPrompt = axios.post('/api/dashboard', {
@@ -51,15 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePost.addEventListener('click', (event) => {
     if (event.target.classList.contains('update-btn')) {
       event.preventDefault();
-      console.log('update clicked');
       const modal = event.target.closest('.edit-modal');
-      const title = modal.querySelector('#update-title').value;
-      const content = modal.querySelector('#update-content').value;
-      console.log(title, content);
+      const title = modal.querySelector('#update-title').value.trim();
+      const content = modal.querySelector('#update-content').value.trim();
+      const alertMessage = document.getElementById('alertMessage');
 
       if (!title || !content) {
-        console.log('Title and content cannot be empty');
+        alertMessage.classList.remove('d-none'); // Show the alert
+          setTimeout(() => {
+          alertMessage.classList.add('d-none');
+        }, 5000);
         return;
+      } else {
+        alertMessage.classList.add('d-none'); // Hide the alert
       }
       let postId = modal.querySelector('.post-id').value;
       console.log(postId);
@@ -86,12 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (event) => {
       const postId = event.target.getAttribute('data-id');
       alert('Are you sure you want to delete this post?');
-      console.log('delete clicked on post:', postId);
       const deletePrompt = axios.delete('/api/dashboard/' + postId);
       deletePrompt
         .then(function (response) {
           window.location.reload();
-          console.log(response);
         })
         .catch(function (error) {
           console.log(error);

@@ -5,28 +5,26 @@ const { check, validationResult } = require('express-validator');
 // Dashboard route
 router.get('/', async (req, res) => {
   try {
-     // If user logged in, include user data
-     if (req.session.loggedIn) {
-    // Fetch all posts from the database
-    const posts = await Post.findAll({
-      where: {
-        userId: req.session.passport.user
-      }
-    });
-    const userData =
-        (await User.findOne({ where: { id: req.session.passport.user } })) || [];
-    // Render dashboard with posts array
-    res.render(
-      'dashboard',
-      { posts, userData, }
-      );
-     } else {
-      res.render('login');
-     }
+    // If user logged in, include user data
+    if (req.session.loggedIn) {
+      // Fetch all posts from the database
+      const posts = await Post.findAll({
+        where: {
+          userId: req.session.passport.user,
+        },
+      });
+      const userData =
+        (await User.findOne({ where: { id: req.session.passport.user } })) ||
+        [];
+      // Render dashboard with posts array
+      res.render('dashboard', { posts, userData });
+    } else {
+      res.status(401).redirect('login');
+    }
   } catch (error) {
     // Handle errors
     console.error('Error fetching posts:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).redirect('login');
   }
 });
 
@@ -35,8 +33,8 @@ router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create(req.body);
     if (newPost) {
-      console.log("newPost was successful");
-    return res.redirect('/api/dashboard');
+      console.log('newPost was successful');
+      return res.redirect('/api/dashboard');
     }
     return res.status(400).json({ message: 'There was an error posting' });
   } catch (error) {

@@ -18,7 +18,6 @@ document.querySelectorAll('.editDetails').forEach(item => {
   axios
     .delete('/api/user/' + id)
     .then((response) => {
-      console.log(response);
       // Close the modal
       let editModal = bootstrap.Modal.getInstance(
         document.getElementById('editModal')

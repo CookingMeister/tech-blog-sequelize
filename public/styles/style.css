@@ -60,10 +60,12 @@ body {
 
 .yellow {
   color: #0f0;
+  text-shadow: -1px 1px 2px black;
 }
 
 .pink {
   color: #f0f;
+  text-shadow: -1px 1px 3px black;
 }
 
 .welcome {
@@ -130,7 +132,6 @@ ul {
 
 .post-title {
   padding-top: 9px;
-  text-shadow: -1px 1px 2px black;
 }
 
 li {
@@ -170,8 +171,7 @@ li {
   bottom: 0;
 }
 
- .user-delete {
-  
+.user-delete {  
   margin-left: 77%!important;
 }
 
@@ -195,6 +195,10 @@ li {
 
 .d-none {
   display: none;
+}
+
+.alert-container {
+  z-index: 1051;
 }
 
 .footer {

@@ -6,13 +6,14 @@ document.querySelector('.register-btn').addEventListener('click', (event) => {
     const username = usernameInput.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(username)) {
-      alertMessage.classList.add('d-none'); // Hide the alert
-      
-  } else {
-    alertMessage.classList.remove('d-none'); // Show the alert
-      console.log("Invalid email address.");
+      alertMessage.classList.add('d-none'); // Hide the alert      
+    } else {
+      alertMessage.classList.remove('d-none'); // Show the alert
+      setTimeout(() => {
+        alertMessage.classList.add('d-none');
+      }, 5000);
       return;
-  }
+    }
 
     const password = document.querySelector('input[name= "password"]').value;
     const user = { username, password };

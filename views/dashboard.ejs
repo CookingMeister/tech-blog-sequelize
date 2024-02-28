@@ -22,7 +22,7 @@
     data-bs-toggle="modal"
     data-bs-target="#createPostModal"
   >
-    <i class="fas fa-plus-square mx-1"></i>
+  <i class="fas fa-magic mx-1"></i>
     Create Post
   </button>
 
@@ -34,11 +34,11 @@
 
       <li class="dash-post-list p-3" onclick="togglePostContent(this)">
         <div class="d-flex justify-content-between">
-          <h3 id="title" class="post-title pink"><%= post.title %></h3>
+          <h3 id="title" class="post-title pink"><%- post.title.trim(); %></h3>
 
           <p class="createdOn mt-2 text-right"><%= post.updatedAt.toDateString() %></p>
         </div>
-        <p id="content" class="mx-3 post-content" style="display: none"><%= post.content %></p>
+        <p id="content" class="my-1 post-content" style="display: none"><%- post.content.trim(); %></p>
         <div class="d-flex justify-content-end m-1">
           <button
             id="edit<%= post.id %>"
@@ -64,7 +64,7 @@
   <% posts.forEach(post => { %>
 
   <div
-    class="modal fade edit-modal"
+    class="modal fade edit-modal mt-5"
     id="editModal<%= post.id %>"
     tabindex="-1"
     aria-labelledby="editModalLabel"
@@ -89,27 +89,26 @@
               type="hidden"
               class="post-id"
               data-id="<%= post.id %>"
-              value="<%= post.id %>"
-            />
+              value="<%= post.id %>"/>
             <div class="mb-3">
               <label for="title" class="col-form-label">Title</label>
               <input
                 type="text"
                 class="form-control"
                 id="update-title"
-                value="<%= post.title %>"
-              />
+                value="<%- post.title.trim(); %>"/>
             </div>
             <div class="mb-3">
               <label for="content" class="col-form-label">Content</label>
               <textarea class="form-control" id="update-content">
-              <%= post.content %></textarea
+              <%- post.content.trim(); %></textarea
               >
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-info update-btn">
+            <i class="fas fa-magic mx-1"></i>
             Update Post
           </button>
           <button
@@ -129,7 +128,7 @@
 
   <!-- Create Post Modal -->
   <div
-    class="modal fade"
+    class="modal fade mt-5"
     id="createPostModal"
     tabindex="-1"
     aria-labelledby="createPostModalLabel"
@@ -138,7 +137,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="createPostModalLabel">Create Post</h3>
+          <h3 class="modal-title pink" id="createPostModalLabel">Create Post</h3>
           <button
             type="button"
             class="btn btn-info btn-close"
@@ -175,10 +174,17 @@
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-info create-post">
+            <i class="fas fa-magic mx-1"></i>
             Create Post
           </button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="container alert-container">
+    <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertMessage">
+      Title and Content are required.
     </div>
   </div>
 
