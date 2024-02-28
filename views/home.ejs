@@ -1,27 +1,25 @@
 <%- include('partials/header.ejs') %>
 
 <div class="opaque-background p-4">
+
   <!-- Welcome user by name -->
   <% if (user) { %> <% let atIndex = user.username.indexOf('@'); %>
   <p class="clear yellow text-center welcome">
     Welcome <%= user.username.slice(0, atIndex) %>!
   </p>
-    <!-- Logout button -->
-    <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
-      Logout
-      <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
-    </button>
+  <!-- Logout button -->
+  <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
+    Logout
+    <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
+  </button>
   <% } else { %>
   <p class="clear yellow text-right welcome">Please Register or Login!</p>
   <% } %>
-
   <!-- Home button -->
   <a href="/" class="btn btn-info clear home m-2"
     ><i class="far fa-newspaper mr-2"></i>
     The Tech Blog
   </a>
-
-
 
   <!-- Jumbotron -->
   <div class="jumbotron custom-jumbotron clear">
@@ -59,17 +57,18 @@
     <ul>
       <!-- Show Post Titles and Dates -->
       <% posts.forEach(post => { %>
-        <!-- If clicked Show Content, Author, Add Comment Button and Comments made on Posts -->
+      <!-- If clicked Show Content, Author, Add Comment Button and Comments made on Posts -->
       <li class="home-post-li p-3" onclick="togglePostContent(this)">
         <div class="d-flex justify-content-between">
           <h4 id="title" class="post-title yellow"><%= post.title %></h4>
-          <% const user = users.find(u => u.id === post.userId); %>
-          <% if (user) { %>
-            <% let atIndex = user.username.indexOf('@'); %>
+          <% const postUser = users.find(u => u.id === post.userId); %> 
+          <% if (postUser) { %>
+            <% let atIndex = postUser.username.indexOf('@'); %>
             <p class="pt-1">
-            Posted by <%= user.username.slice(0, atIndex) %>
-            <span class="createdOn"
-              >on <%= post.updatedAt.getMonth() +1 %>/<%= post.updatedAt.getDate() %>/<%= post.updatedAt.getFullYear() %></span>
+              Posted by <%= postUser.username.slice(0, atIndex) %>
+                <span class="createdOn">
+                   on <%= post.updatedAt.getMonth() + 1 %>/<%= post.updatedAt.getDate() %>/<%= post.updatedAt.getFullYear() %>
+                </span>
             </p>
           <% } else { %>
             <p class="mx-5">Author: Unknown</p>
@@ -77,31 +76,33 @@
         </div>
         <p class="post-content" style="display: none"><%= post.content %></p>
         <% if (comments.length > 0) { %>
-          <div class="comment-div d-flex justify-content-center">
-            <!-- Only show Comments for that Post by matching ID -->
-            <% comments.filter(c => c.postId === post.id).forEach(c => { %>
-              <p class="comment-content p-1">
-                <em>
-                '<%= c.comment %>''
-                </em>
-              </p>
-              <% const author = users.find(u => u.id === c.userId); %>
-              <% let atIndex = author.username.indexOf('@'); %>
-              <p class="comment-author mx-1 p-1">
-                <em>
-                  from <%= author.username.slice(0, atIndex) %>
-                  <span>
-                     on <%= c.createdAt.getMonth() + 1 %>/<%= c.createdAt.getDate() %>/<%= c.createdAt.getFullYear() %>
-                  </span>
-                </em>
-              </p>
-            <% }) %>            
-          </div>
-          <% } %>
+        <div class="comment-div d-flex justify-content-center">
+          <%#-- Only show Comments for that Post by matching ID --#%>
+          <% comments.filter(c => c.postId === post.id).forEach(c => { %>
+          <p class="comment-content p-1">
+            <em> '<%= c.comment %>'' </em>
+          </p>
+          <% const author = users.find(u => u.id === c.userId); %> <% let
+          atIndex = author.username.indexOf('@'); %>
+          <p class="comment-author mx-1 p-1">
+            <em>
+              from <%= author.username.slice(0, atIndex) %>
+              <span>
+                on <%= c.createdAt.getMonth() + 1 %>/<%= c.createdAt.getDate()
+                %>/<%= c.createdAt.getFullYear() %>
+              </span>
+            </em>
+          </p>
+          <% }) %>
+        </div>
+        <% } %>
         <button
           id="comment<%= post.id %>"
           class="btn btn-info comment-btn m-2"
           data-id="<%= post.id %>"
+          <% if (user) { %>
+            data-user-id="<%= user.id %>"
+          <% } %>
           style="display: none"
           data-bs-toggle="modal"
           data-bs-target="#commentModal<%= post.id %>"
@@ -117,7 +118,7 @@
     <% } %>
   </div>
 
-  <!-- Comment Modal -->
+  <%#-- Comment Modal --#%>
   <% posts.forEach(post => { %>
 
   <div
@@ -142,23 +143,26 @@
         </div>
         <div class="modal-body">
           <form>
-            <input type="hidden" class="post-id" data-id="<%= post.id %>"/>
+            <input type="hidden" class="post-id" data-id="<%= post.id %>" />
             <div class="mb-3">
               <label for="comment" class="col-form-label"></label>
               <input
                 type="text"
                 class="form-control comment-input"
                 id="comment"
-                >
+              />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info comment-modal-btn" data-id="<%= post.id %>"
+          <button
+            type="button"
+            class="btn btn-info comment-modal-btn"
+            data-id="<%= post.id %>"
             <% if (user) { %>
-              data-user-id="<%= user.id %>"
+            data-user-id="<%= user.id %>"
             <% } %>>
-            Add Comment
+             Add Comment
           </button>
         </div>
       </div>

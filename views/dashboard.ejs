@@ -1,6 +1,7 @@
 <%- include('partials/header.ejs') %>
 
 <div class="background-dash">
+
   <% if (userData) { %> <% let atIndex = userData.username.indexOf('@'); %>
   <p class="clear yellow text-center pt-3 ml-2">
     Welcome <%= userData.username.slice(0, atIndex) %>!
@@ -181,8 +182,8 @@
     </div>
   </div>
 
-
-  <script src="../js/dashboard.js"></script>
-
-  <%- include('partials/footer.ejs') %>
 </div>
+
+<script src="../js/dashboard.js"></script>
+
+<%- include('partials/footer.ejs') %>

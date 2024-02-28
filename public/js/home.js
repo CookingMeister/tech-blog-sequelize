@@ -31,9 +31,15 @@ const commentBtns = document.querySelectorAll('.comment-btn');
 commentBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     event.preventDefault();
+    const userId = btn.getAttribute('data-user-id');
+    console.log(userId);
+    if (!userId) {
+      // User is not logged in, redirect to login page
+      console.log('User is not logged in');
+      return window.location.href = '/api/login';
+  }
     const postId = btn.getAttribute('data-id');
     console.log('comment clicked on post:', postId);
-
   });
 });
 
