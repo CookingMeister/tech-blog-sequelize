@@ -1,7 +1,19 @@
 // Register form event listener
 document.querySelector('.register-btn').addEventListener('click', (event) => {
     event.preventDefault();
-    const username = document.querySelector('input[name= "username"]').value;
+    const usernameInput = document.querySelector('input[name= "username"]').value;
+    const alertMessage = document.getElementById('alertMessage');
+    const username = usernameInput.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(username)) {
+      alertMessage.classList.add('d-none'); // Hide the alert
+      
+  } else {
+    alertMessage.classList.remove('d-none'); // Show the alert
+      console.log("Invalid email address.");
+      return;
+  }
+
     const password = document.querySelector('input[name= "password"]').value;
     const user = { username, password };
     // Make a POST request and save it as a variable

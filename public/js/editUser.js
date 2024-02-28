@@ -24,9 +24,26 @@ document.querySelectorAll('.editDetails').forEach(item => {
         document.getElementById('editModal')
       );
       editModal.hide();
-      window.location.reload();
+      window.location.replace('/');
     })
-    .catch((error) => { // Error handling
+    .catch((error) => {
+      // Error handling
       console.log(error.response);
     });
 });
+
+// Logout button listener
+const logout = document.querySelector('.logout-btn');
+if (logout) {
+    logout.addEventListener('click', () => {
+        console.log('logout clicked');
+        const logoutPrompt = axios.get('/api/logout');
+        logoutPrompt
+          .then(function (response) {
+            window.location.replace('/');
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      });
+};

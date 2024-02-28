@@ -58,6 +58,22 @@ body {
   backdrop-filter: blur(3px);
 }
 
+.yellow {
+  color: #0f0;
+}
+
+.pink {
+  color: #f0f;
+}
+
+.welcome {
+  margin-top: -7px;
+}
+
+.clear {
+  backdrop-filter: blur(0px);
+}
+
 .custom-jumbotron {
   width: 80%;
   margin: auto;
@@ -65,10 +81,6 @@ body {
   height: 360px;
   background-color: rgba(0, 0, 0, 0.6);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.clear {
-  backdrop-filter: blur(0px);
 }
 
 .dash-div,
@@ -82,7 +94,7 @@ body {
   border-radius: 5px;
 }
 
-.home-posts ul {
+ul {
   width: inherit;
 }
 
@@ -118,10 +130,11 @@ body {
 
 .post-title {
   padding-top: 9px;
+  text-shadow: -1px 1px 2px black;
 }
 
 li {
-  list-style: circle;
+  list-style: none;
 }
 
 .logout-btn {
@@ -129,22 +142,18 @@ li {
   right: 0;
   top: 0;
 }
+
 .home {
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.yellow {
-  color: #0f0;
-}
-
-.pink {
-  color: #f0f;
-}
-
-.welcome {
-  margin-top: -7px;
+.dash-post-list:hover {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: ease-in-out;
 }
 
 .home-post-li:hover,
@@ -161,6 +170,15 @@ li {
   bottom: 0;
 }
 
+ .user-delete {
+  
+  margin-left: 77%!important;
+}
+
+.highlighted {
+ background-color: rgba(190, 214, 71, 0.4);
+}
+
 .profile {
   width: 50vw;
   padding-bottom: 1vh;
@@ -173,6 +191,10 @@ li {
 .comment-div p {
   display: none;
   color: antiquewhite;
+}
+
+.d-none {
+  display: none;
 }
 
 .footer {

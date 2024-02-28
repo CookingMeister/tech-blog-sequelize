@@ -2,10 +2,24 @@
 
 <div class="background-user">
 
+
   <h1 class="text-center yellow clear p-5">User Profile</h1>
+
+   <!-- Home button -->
+ <a href="/" class="btn btn-info clear home m-2">
+  <i class="far fa-newspaper mr-2"></i>
+    The Tech Blog
+ </a>
+
+  <!-- Logout button -->
+  <button type="submit" class="btn btn-info clear logout-btn m-2 px-3">
+    Logout
+    <i class="fas fa-sign-out-alt ml-2 logout-icon clear"></i>
+  </button>
+
   <div class="container clear profile pt-5">
   
-  <% if (user) { %>
+    <% if (user) { %>
     <ul class="d-flex justify-content-center">
         <li class="mb-3">ID: <%= user.id %> <br>
           Username: <%= user.username %>
@@ -17,10 +31,10 @@
           </button>
         </li>
     </ul>
-  <% } else { %>
+    <% } else { %>
     <p>No users found.</p>
-  <% } %>
-</div>
+    <% } %>
+  </div>
 
   <!-- Bootstrap modal -->
   <div class="modal fade pt-5" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -33,15 +47,15 @@
         <div class="modal-body">
           <h5 class="mb-3">User Profile</h5>
           <div id="modalContent"></div>
-          <button class="btn btn-danger delete-btn">
-            <i class="fas fa-trash mr-1"></i>
-            Delete</button>
+            <button class="btn btn-danger delete-btn user-delete">
+              <i class="fas fa-trash mr-1"></i>
+              Delete
+            </button>
+          </div>        
         </div>
-        
       </div>
     </div>
   </div>
-
 </div>
 
 <script src="../js/editUser.js"></script>
