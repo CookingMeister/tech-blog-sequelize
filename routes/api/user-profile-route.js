@@ -1,47 +1,16 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
+const { getUser, deleteUser } = require('../../controllers/userController.js');
 
 // Get user profile
-router.get('/', async (req, res) => {
-  try {
-    // if (!req.isAuthenticated()) {
-    //   return res.status(401).json({ error: 'Unauthorized' });
-    // }
-    // If user logged in, include user data
-    if (req.session.loggedIn) {
-      // Fetch all posts from the database
-      const user =
-        (await User.findOne({ where: { id: req.session.passport.user } })) ||
-        [];
-      // Render dashboard with posts array
-      res.render('user', { user });
-    }
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Error fetching users' });
-  }
-});
-
-// Route to get user by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const id = req.params.id;
-    const user = await User.findByPk(id);
-    res.render('userDetails.ejs', { user });
-  } catch (error) {
-    console.error('Error fetching user:', error);
-    res.status(500).send('Error fetching user');
-  }
-});
+router.get('/', getUser);
 
 // Update user profile
-router.put('/:id', async (req, res) => {
-  // // Authentication middleware in place
-  // if (!req.isAuthenticated()) {
-  //   return res.status(401).json({ error: 'Unauthorized' });
-  // }
+router.post('/:id', async (req, res) => {
+  //  Authentication middleware
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
   const id = req.params.id;
   const { username } = req.body;
 
@@ -64,24 +33,6 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete user profile
-router.delete('/:id', async (req, res) => {
-  // Authentication middleware in place
-  // if (!req.isAuthenticated()) {
-  //   return res.status(401).json({ error: 'Unauthorized' });
-  // }
-  console.log('delete user route called');
-  const id = req.params.id;
-  try {
-    const user = await User.findByPk(id);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    await user.destroy();
-    res.status(204).json({ message: 'User deleted' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+router.delete('/:id', deleteUser);
 
 module.exports = router;

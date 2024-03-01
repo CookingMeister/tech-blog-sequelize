@@ -85,6 +85,10 @@ body {
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
+.jumbotron a.btn {
+  margin-top: 30px;
+}
+
 .dash-div,
 .profile {
   background-color: rgba(255, 255, 255, 0.6);
@@ -98,6 +102,10 @@ body {
 
 ul {
   width: inherit;
+}
+
+li {
+  list-style: none;
 }
 
 .home-posts li {
@@ -126,16 +134,8 @@ ul {
   display: inline;
 }
 
-.jumbotron a.btn {
-  margin-top: 30px;
-}
-
 .post-title {
   padding-top: 9px;
-}
-
-li {
-  list-style: none;
 }
 
 .logout-btn {
@@ -171,13 +171,9 @@ li {
   bottom: 0;
 }
 
-.user-delete {  
+/* .user-delete {  
   margin-left: 77%!important;
-}
-
-.highlighted {
- background-color: rgba(190, 214, 71, 0.4);
-}
+} */
 
 .profile {
   width: 50vw;

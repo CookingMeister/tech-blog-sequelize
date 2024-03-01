@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update user post by id
   const updatePost = document.querySelector('.background-dash');
-  updatePost.addEventListener('click', (event) => {
-    if (event.target.classList.contains('update-btn')) {
-      event.preventDefault();
-      const modal = event.target.closest('.edit-modal');
+  updatePost.addEventListener('click', (e) => {
+    if (e.target.classList.contains('update-btn')) {
+      e.preventDefault();
+      const modal = e.target.closest('.edit-modal');
       const title = modal.querySelector('#update-title').value.trim();
       const content = modal.querySelector('#update-content').value.trim();
       const alertMessage = document.getElementById('alertMessage');
@@ -80,10 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         content,
       });
       updatePrompt
-        .then(function (response) {
+        .then((response) => {
           window.location.reload();
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
     }
@@ -91,38 +91,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Delete post by id
   const deletePostBtns = document.querySelectorAll('.delete-btn');
-
-  deletePostBtns.forEach(function (btn) {
-    btn.addEventListener('click', (event) => {
-      const postId = event.target.getAttribute('data-id');
+  deletePostBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const postId = e.target.getAttribute('data-id');
       alert('Are you sure you want to delete this post?');
       const deletePrompt = axios.delete('/api/dashboard/' + postId);
       deletePrompt
-        .then(function (response) {
+        .then((response) => {
           window.location.reload();
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
     });
   });
-
-
-
-
 
   // Logout user
   const logout = document.querySelector('.logout-btn');
   logout.addEventListener('click', () => {
     const logoutPrompt = axios.get('/api/logout');
     logoutPrompt
-      .then(function (response) {
+      .then((response) => {
         window.location.replace('/');
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   });
+
 });
 
   // Toggle Post Content

@@ -1,20 +1,23 @@
 <%- include('partials/header.ejs') %>
 
 <div class="background-dash">
-
+  <!-- Welcome User -->
   <% if (userData) { %> <% let atIndex = userData.username.indexOf('@'); %>
   <p class="clear yellow text-center pt-3 ml-2">
     Welcome <%= userData.username.slice(0, atIndex) %>!
   </p>
   <% } %>
+  <!-- Home Button -->
   <a href="/" class="btn btn-info clear home m-2">
     <i class="far fa-newspaper mr-2"></i>
     The Tech Blog
   </a>
+  <!-- Logout Button -->
   <button type="submit" class="btn btn-info clear logout-btn m-2">
     Logout
     <i class="fas fa-sign-out-alt ml-2 logout-icon"></i>
   </button>
+  <!-- Dashboard -->
   <h1 class="text-center p-5 yellow clear">Dashboard</h1>
   <button
     type="button"
