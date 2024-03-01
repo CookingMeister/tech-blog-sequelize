@@ -94,15 +94,27 @@ document.addEventListener('DOMContentLoaded', () => {
   deletePostBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const postId = e.target.getAttribute('data-id');
-      alert('Are you sure you want to delete this post?');
-      const deletePrompt = axios.delete('/api/dashboard/' + postId);
-      deletePrompt
-        .then((response) => {
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const alertMessage = document.getElementById('alertDeleteMessage');
+      alertMessage.classList.remove('d-none'); // Show the alert
+      // Yes prompt to Delete
+      document.querySelector('.yesClicked').addEventListener('click', () => {
+        console.log('yes clicked');
+        alertMessage.classList.add('d-none'); // Hide the alert
+        const deletePrompt = axios.delete('/api/dashboard/' + postId);
+          deletePrompt
+            .then((response) => {
+              window.location.reload();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+      });
+      // No prompt to not Delete
+      document.querySelector('.closeDelete').addEventListener('click', () => {
+        console.log('no clicked');
+        alertMessage.classList.add('d-none'); // Hide the alert
+        window.location.reload();
+      });     
     });
   });
 

@@ -171,10 +171,6 @@ li {
   bottom: 0;
 }
 
-/* .user-delete {  
-  margin-left: 77%!important;
-} */
-
 .profile {
   width: 50vw;
   padding-bottom: 1vh;
@@ -194,7 +190,13 @@ li {
 }
 
 .alert-container {
-  z-index: 1051;
+  z-index: 2000;
+  opacity: 100;
+}
+
+.alert-delete {
+  top: 150px;
+  z-index: 2000;
 }
 
 .footer {

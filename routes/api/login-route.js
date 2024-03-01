@@ -9,4 +9,10 @@ router.get('/', (req, res) => {
 // Handle Login logic
 router.post('/', authenticate );
 
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal Server Error' });
+});
+
 module.exports = router;

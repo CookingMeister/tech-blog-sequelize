@@ -5,6 +5,8 @@ const saltRounds = 10;
 
 // Login authentication using passport-local strategy
 const authenticate = (req, res, next) => {
+  ({ username, password } = req.body);
+  console.log(username, password);
   passport.authenticate('local', (err, user) => {
     err
       ? res.status(500).json({ message: 'There was an error logging in' })

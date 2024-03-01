@@ -30,17 +30,21 @@ router.get('/', async (req, res) => {
 
 // POST a new post
 router.post('/', async (req, res) => {
-  try {
-    const newPost = await Post.create(req.body);
-    if (newPost) {
-      return res.redirect('/api/dashboard');
+  //  Is user authenticated to Post
+  if (req.isAuthenticated) {
+    try {
+      const newPost = await Post.create(req.body);
+      if (newPost) {
+        return res.redirect('/api/dashboard');
+      }
+      return res.status(400).json({ message: 'There was an error posting' });
+    } catch (error) {
+      // Handle errors
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-    return res.status(400).json({ message: 'There was an error posting' });
-  } catch (error) {
-    // Handle errors
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
   }
+  return res.status(401).json({error: 'User is not authorized'})
 });
 
 // PUT to update a post by ID
@@ -74,25 +78,28 @@ router.delete('/:id', check('id').isInt(), async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-
-  try {   // Delete Post by ID
-    const { rowsDeleted } = await Post.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (rowsDeleted === 0) {
-      res.status(404).json({ message: 'No post found with this id!' });
+  //  Is user authenticated to Delete
+  if (req.isAuthenticated) {
+    try {   // Delete Post by ID
+      const { rowsDeleted } = await Post.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+  
+      if (rowsDeleted === 0) {
+        res.status(404).json({ message: 'No post found with this id!' });
+        return;
+      }
+      res.status(200).json({ message: 'Post successfully deleted!' });
       return;
+    } catch (error) {
+      // Handle errors
+      console.log(error);
+      res.status(500).json(error);
     }
-    res.status(200).json({ message: 'Post successfully deleted!' });
-    return;
-  } catch (error) {
-    // Handle errors
-    console.log(error);
-    res.status(500).json(error);
   }
+  return res.status(401).json({error: 'User is not authorized'})
 });
 
 module.exports = router;

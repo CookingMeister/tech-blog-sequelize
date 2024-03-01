@@ -16,7 +16,7 @@ router.post('/:id', async (req, res) => {
 
   try {
     const user = await User.findByPk(id);
-    // Update only the fields that were sent in the request
+    // Update only the username
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     } else {

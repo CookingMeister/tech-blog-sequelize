@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 passport.use(
   new LocalStrategy(
     {
-      username: 'email',
+      username: 'username',
       password: 'password',
     },
     async (username, password, done) => {

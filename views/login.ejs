@@ -1,5 +1,6 @@
 <%- include('partials/header') %>
 <div class="background-dash p-3">
+
 <div class="container mt-5">
   <h1 class="text-center clear yellow login">Login</h1>
 
@@ -7,8 +8,8 @@
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-          <!-- Makes POST request to /login route -->
-          <form action="/api/login" method="POST">
+          <!-- Makes POST request to /api/login route -->
+          <form class="form">
             <div id="username" class="form-group">
               <label for="email">Email</label>
               <input type="email" class="form-control" name="username" />
@@ -17,13 +18,27 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password" />
             </div>
-            <button type="submit" class="btn btn-info login-btn">Login</button>
+            <button class="btn btn-info login-btn" id="loginBtn">
+              Login
+            </button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="container alert-container mt-3">
+  <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertMessage">
+    Please enter a valid email address.
+  </div>
+  <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertRegisterMessage">
+    Generated Message here.
+  </div>
 </div>
+
+</div>
+
+<script src="../js/login.js"></script>
 
 <%- include('partials/footer') %>
