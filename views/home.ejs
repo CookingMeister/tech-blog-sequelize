@@ -77,23 +77,21 @@
         <p class="post-content" style="display: none"><%= post.content %></p>
         <% if (comments.length > 0) { %>
         <div class="comment-div d-flex justify-content-center">
+          <div class="text-center">
           <%#-- Only show Comments for that Post by matching ID --#%>
           <% comments.filter(c => c.postId === post.id).forEach(c => { %>
           <p class="comment-content p-1">
             <em> '<%= c.comment %>'' </em>
-          </p>
           <% const author = users.find(u => u.id === c.userId); %> <% let
           atIndex = author.username.indexOf('@'); %>
-          <p class="comment-author mx-1 p-1">
             <em>
-              from <%= author.username.slice(0, atIndex) %>
-              <span>
+              from <%= author.username.slice(0, atIndex) %>            
                 on <%= c.createdAt.getMonth() + 1 %>/<%= c.createdAt.getDate()
                 %>/<%= c.createdAt.getFullYear() %>
-              </span>
             </em>
           </p>
           <% }) %>
+        </div>
         </div>
         <% } %>
         <button
