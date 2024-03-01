@@ -78,9 +78,6 @@ router.delete('/:id', async (req, res) => {
     }
     await user.destroy();
     res.status(204).json({ message: 'User deleted' });
-    // Log the user out
-    // req.logout(); // requires a callback function ????????????????????????????????????????
-    // Redirect to homepage
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

@@ -33,11 +33,11 @@ router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create(req.body);
     if (newPost) {
-      console.log('newPost was successful');
       return res.redirect('/api/dashboard');
     }
     return res.status(400).json({ message: 'There was an error posting' });
   } catch (error) {
+    // Handle errors
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -45,12 +45,13 @@ router.post('/', async (req, res) => {
 
 // PUT to update a post by ID
 router.put('/', check('id').isInt(), async (req, res) => {
+  // Validate the request
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  try {
+  try {   // Update Post by ID
     const updatedPost = await Post.update(req.body, {
       where: {
         id: req.body.id,
@@ -60,6 +61,7 @@ router.put('/', check('id').isInt(), async (req, res) => {
     res.status(200).json(updatedPost);
     return;
   } catch (error) {
+    // Handle errors
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -67,17 +69,13 @@ router.put('/', check('id').isInt(), async (req, res) => {
 
 // DELETE a post by ID
 router.delete('/:id', check('id').isInt(), async (req, res) => {
+  // Validate the request
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  try {
-    // const deleteComment = await Comment.destroy({
-    //   where: {
-    //     postId: req.params.id,
-    //   },
-    // });
+  try {   // Delete Post by ID
     const { rowsDeleted } = await Post.destroy({
       where: {
         id: req.params.id,
@@ -91,6 +89,8 @@ router.delete('/:id', check('id').isInt(), async (req, res) => {
     res.status(200).json({ message: 'Post successfully deleted!' });
     return;
   } catch (error) {
+    // Handle errors
+    console.log(error);
     res.status(500).json(error);
   }
 });

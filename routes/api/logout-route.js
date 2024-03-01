@@ -1,14 +1,7 @@
 const router = require('express').Router();
+const { logout } = require('../../controllers/authController.js');
 
-router.get('/', async (req, res) => {
-  await req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-      res.status(500).json({ message: 'There was an error logging out' });
-    } else {
-      res.redirect('/');
-    }
-  });
-});
+// Handle the Logout
+router.get('/', logout );
 
 module.exports = router;
