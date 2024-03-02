@@ -19,6 +19,10 @@ Make sure you create a .env file to store environment variables for the mySQL da
 * From the dashboard, existing users can create, edit, and delete their own posts.
 * Option to update or delete your user profile.
 
+## Link
+
+A link to the deployed app on Heroku can be found [here](https://infinite-ocean-68541-91b9dc3361ab.herokuapp.com/).
+
 ## Built With
 
 * HTML, CSS, JavaScript
@@ -34,7 +38,7 @@ Make sure you create a .env file to store environment variables for the mySQL da
 
 ## Credits
 
-This app was created by [CookingMeister](https://github.com/CookingMeister) on criteria from the University of New Brunswick's [edX Coding Bootcamp](https://unb.ca/cel/bootcamps/coding.html) program. W3Schools and MDN Web Docs were invaluable resources for creating this app.
+This app was created by [CookingMeister](https://github.com/CookingMeister) on criteria from the University of New Brunswick's [edX Coding Bootcamp](https://unb.ca/cel/bootcamps/coding.html) program. W3Schools and MDN Web Docs were invaluable resources for creating this app. Background images were created using prompts to [Microsoft Copilot](https://copilot.microsoft.com/).
 
 ## License
 
