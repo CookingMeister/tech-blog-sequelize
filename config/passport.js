@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 
+//  Passport-local Strategy
 passport.use(
   new LocalStrategy(
     {
@@ -28,10 +29,12 @@ passport.use(
   )
 );
 
+// Serialize data
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+// Deserialize data
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findByPk(id);

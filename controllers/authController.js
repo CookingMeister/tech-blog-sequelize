@@ -83,6 +83,7 @@ const registerUser = async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
 // Logout logic
 const logout = (req, res) => {
   req.session.destroy((err) => {

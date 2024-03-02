@@ -1,5 +1,7 @@
 <%- include('partials/header') %>
+
 <div class="opaque-background p-3">
+  <!-- Register Section -->
 <div class="container mt-5">
   <h1 class="text-center register yellow clear">Register</h1>
 
@@ -7,7 +9,6 @@
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-
           <!-- Makes POST request to /register route -->
           <form action="/api/register" method="POST">
             <div class="form-group">
@@ -26,7 +27,7 @@
     </div>
   </div>
 </div>
-
+<!-- Alert Section -->
 <div class="container alert-container mt-3">
   <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertMessage">
     Please enter a valid email address.
@@ -36,4 +37,5 @@
 </div>
 
 <script src="../js/register.js"></script>
+
 <%- include('partials/footer') %>

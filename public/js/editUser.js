@@ -6,10 +6,10 @@ document.querySelectorAll('.editDetails').forEach((item) => {
     id = event.target.getAttribute('data-id');
     let username = event.target.getAttribute('data-username');
     let editModal = new bootstrap.Modal(document.getElementById('editModal'));
-    // Set the modal's content to the user's ID and name
+    // Set content to the user's ID and name
     document.querySelector('#modalContent').innerHTML = `<form>
-      <p class="user-id">ID: ${id} </p>
-      <label class="form-label">Username:</label>
+      <p class="user-id mx-1">ID: <span class="mx-2">${id} </span></p>
+      <label class="form-label mx-1">Username:</label>
       <input class="form-control pl-2" value="${username}">
       </form>`;
     editModal.show(); // Show the Bootstrap modal

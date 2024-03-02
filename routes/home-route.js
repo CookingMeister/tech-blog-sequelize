@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('./../models');
 
-// Route to render the home page using EJS
+// Render the home page using EJS
 router.get('/', async (req, res) => {
   try {
   // Fetch all posts from the database
