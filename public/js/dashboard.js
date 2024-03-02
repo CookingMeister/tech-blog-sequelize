@@ -19,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Create a new post
-  const createPost = document.querySelector('.create-post');
-  createPost.addEventListener('click', (e) => {
+  const handleCreate = (e) => {
     e.preventDefault();
     const title = document.querySelector('input[id="create-title"]').value.trim();
     const content = document.querySelector(
@@ -50,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(function (error) {
         console.log(error);
       });
-  });
+  }
+  const createPost = document.querySelector('.create-post');
+  createPost.addEventListener('click', handleCreate);
+ 
 
   // Update user post by id
   const updatePost = document.querySelector('.background-dash');

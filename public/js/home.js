@@ -32,7 +32,6 @@ commentBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
     event.preventDefault();
     const userId = btn.getAttribute('data-user-id');
-    console.log(userId);
     if (!userId) {
       // User is not logged in, redirect to login page
       return window.location.replace('/api/login');
@@ -47,23 +46,21 @@ modalBtns.forEach((btn) => {
     event.preventDefault();
     const postId = btn.getAttribute('data-id');
     const userId = btn.getAttribute('data-user-id');
-    console.log('comment clicked on post:', postId, "from user:", userId);
     const modal = btn.closest('.modal');
     const comment = modal.querySelector('.comment-input').value.trim();
-    console.log(comment);
     const commentPrompt = axios.post('/api/comment', {
       userId: userId,
       postId: postId,
       comment: comment
     });
     commentPrompt
-    .then(function (response) {
-      console.log(response);
-      window.location.replace('/');
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+      .then(function (response) {
+        console.log(response);
+        window.location.replace('/');
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   });
 });
 

@@ -67,9 +67,9 @@
             <p class="pt-1">
               Posted by <%= postUser.username.slice(0, atIndex) %>
                 <span class="createdOn">
-                   on <%= post.updatedAt.getMonth() + 1 %>/
-                   <%= post.updatedAt.getDate() %>/
-                   <%= post.updatedAt.getFullYear() %>
+                   on <%= post.updatedAt.getMonth() + 1 
+                   %>/<%= post.updatedAt.getDate() 
+                   %>/<%= post.updatedAt.getFullYear() %>
                 </span>
             </p>
           <% } else { %>
@@ -88,9 +88,9 @@
               atIndex = author.username.indexOf('@'); %>
               <em>
                 from <%= author.username.slice(0, atIndex) %>            
-                on <%= c.createdAt.getMonth() + 1 %>/
-                <%= c.createdAt.getDate() %>/
-                <%= c.createdAt.getFullYear() %>
+                on <%= c.createdAt.getMonth() + 1 
+                %>/<%= c.createdAt.getDate() 
+                %>/<%= c.createdAt.getFullYear() %>
               </em>
             </p>
             <% }) %>
@@ -121,7 +121,6 @@
 
   <%#-- Comment Modal --#%>
   <% posts.forEach(post => { %>
-
   <div
     class="modal fade comment-modal"
     id="commentModal<%= post.id %>"
