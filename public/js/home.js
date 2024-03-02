@@ -35,7 +35,7 @@ commentBtns.forEach((btn) => {
     console.log(userId);
     if (!userId) {
       // User is not logged in, redirect to login page
-      return window.location.href = '/api/login';
+      return window.location.replace('/api/login');
     }
   });
 });

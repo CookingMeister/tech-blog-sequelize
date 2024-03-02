@@ -1,5 +1,7 @@
 # Tech Blog
 
+[![badge](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit)
+
 ## Description
 
 This is a CMS-style blog site where developers can publish their blog posts and comment on other developers' posts. This app follows the MVC paradigm and uses EJS as the templating language, Sequelize as the ORM, and the express-session and passport.js npm packages for authentication.
@@ -15,7 +17,7 @@ Make sure you create a .env file to store environment variables for the mySQL da
 * Add a comment to an existing post.
 * Click on the dashboard link to go to your dashboard.
 * From the dashboard, existing users can create, edit, and delete their own posts.
-* Option to delete your user profile.
+* Option to update or delete your user profile.
 
 ## Built With
 
@@ -32,9 +34,11 @@ Make sure you create a .env file to store environment variables for the mySQL da
 
 ## Credits
 
-This app was created by [CookingMeister](https://github.com/CookingMeister) on criteria from the University of New Brunswick's [edX Coding Bootcamp](https://unb.ca/cel/bootcamps/coding.html) program.
+This app was created by [CookingMeister](https://github.com/CookingMeister) on criteria from the University of New Brunswick's [edX Coding Bootcamp](https://unb.ca/cel/bootcamps/coding.html) program. W3Schools and MDN Web Docs were invaluable resources for creating this app.
 
 ## License
+
+[![badge](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/mit)
 
 This project is licensed under the MIT license. See LICENSE file for details.
 

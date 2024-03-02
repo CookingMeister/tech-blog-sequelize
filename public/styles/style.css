@@ -2,6 +2,7 @@ body {
   font-family: 'Verdana', sans-serif;
 }
 
+/* Background Styling for Register and Home pages */
 .opaque-background {
   background-image: url('../img/Designer3.png');
   background-size: contain;
@@ -21,6 +22,7 @@ body {
   backdrop-filter: blur(3px);
 }
 
+/* Background Styling for Login and Dashboard pages */
 .background-dash {
   background-image: url('../img/Designer1.png');
   background-size: contain;
@@ -40,6 +42,7 @@ body {
   backdrop-filter: blur(3px);
 }
 
+/* Background Styling for User page */
 .background-user {
   background-image: url('../img/Designer2.png');
   background-size: contain;
@@ -47,6 +50,7 @@ body {
   width: 100%;
   height: 100vh;
 }
+
 .background-user::before {
   content: '';
   position: absolute;
@@ -76,6 +80,7 @@ body {
   backdrop-filter: blur(0px);
 }
 
+/* Jumbotron */
 .custom-jumbotron {
   width: 80%;
   margin: auto;
@@ -89,15 +94,15 @@ body {
   margin-top: 30px;
 }
 
-.dash-div,
-.profile {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 5px;
+.inline {
+  display: inline;
 }
 
-.home-posts {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+/* Home */
+.home-date {
+  font-size: 1.2rem;
+  text-align: right;
+  margin-top: -3.5vh;
 }
 
 ul {
@@ -108,34 +113,69 @@ li {
   list-style: none;
 }
 
+.home-posts {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
 .home-posts li {
   position: relative;
   color: white;
 }
 
-.showModal {
-  position: relative;
-  left: 75vw;
-  top: -2vh;
+.post-title {
+  padding-top: 9px;
 }
 
-.home-date {
-  font-size: 1.2rem;
-  text-align: right;
-  margin-top: -3.5vh;
+.home-post-li:hover,
+.home-post-li:focus {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: ease-in-out;
 }
 
+/* Comments */
+.comment-modal {
+  padding-top: 250px;
+}
+
+.comment-div p {
+  display: none;
+  color: antiquewhite;
+}
+
+/* Dashboard */
+.dash-div,
+.profile {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+}
+
+.dash-post-list:hover {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: ease-in-out;
+}
+
+/* User */
+.profile {
+  width: 50vw;
+  padding-bottom: 1vh;
+}
+
+/* Login and Register */
 .login,
 .register {
   margin-bottom: 20px;
 }
 
-.inline {
-  display: inline;
-}
-
-.post-title {
-  padding-top: 9px;
+/* Buttons */
+.home {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .logout-btn {
@@ -151,51 +191,19 @@ li {
   margin: 2%;
 }
 
-.home {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.dash-post-list:hover {
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.3);
-  transition: ease-in-out;
-}
-
-.home-post-li:hover,
-.home-post-li:focus {
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.3);
-  transition: ease-in-out;
-}
-
 .comment-btn {
   position: absolute;
   right: 0;
   bottom: 0;
 }
 
-.profile {
-  width: 50vw;
-  padding-bottom: 1vh;
+.showModal {
+  position: relative;
+  left: 75vw;
+  top: -2vh;
 }
 
-.comment-modal {
-  padding-top: 250px;
-}
-
-.comment-div p {
-  display: none;
-  color: antiquewhite;
-}
-
-.d-none {
-  display: none;
-}
-
+/* Bootstrap Alerts */
 .alert-container {
   z-index: 2000;
   opacity: 100;
@@ -206,6 +214,11 @@ li {
   z-index: 2000;
 }
 
+.d-none {
+  display: none;
+}
+
+/* Footer Styling */
 .footer {
   color: black;
   height: 60px;

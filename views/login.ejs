@@ -1,43 +1,57 @@
 <%- include('partials/header') %>
 
 <div class="background-dash p-3">
+  
+  <!-- Login Section -->
+  <div class="container mt-5">
+    <!-- Home button -->
+    <a href="/" class="btn btn-info clear home m-2"
+      ><i class="far fa-newspaper mr-2"></i>
+      The Tech Blog
+    </a>
+    <h1 class="text-center clear yellow login">Login</h1>
 
-<!-- Login Section -->
-<div class="container mt-5">
-  <h1 class="text-center clear yellow login">Login</h1>
-
-  <div class="row d-flex justify-content-center">
-    <div class="col-6">
-      <div class="card">
-        <div class="card-body">
-          <!-- Makes POST request to /api/login route -->
-          <form class="form">
-            <div id="username" class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="username" />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" />
-            </div>
-            <button class="btn btn-info login-btn" id="loginBtn">
-              Login
-            </button>
-          </form>
+    <div class="row d-flex justify-content-center">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <!-- Makes POST request to /api/login route -->
+            <form class="form">
+              <div id="username" class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="username" />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" />
+              </div>
+              <button class="btn btn-info login-btn" id="loginBtn">
+                Login
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Alert Section -->
-<div class="container alert-container mt-3">
-  <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertMessage">
-    Please enter a valid email address.
+
+  <!-- Alert Section -->
+  <div class="container alert-container mt-3">
+    <div
+      class="alert alert-danger d-none w-50 text-center m-auto"
+      role="alert"
+      id="alertMessage"
+    >
+      Please enter a valid email address.
+    </div>
+    <div
+      class="alert alert-danger d-none w-50 text-center m-auto"
+      role="alert"
+      id="alertRegisterMessage"
+    >
+      Generated Message here.
+    </div>
   </div>
-  <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertRegisterMessage">
-    Generated Message here.
-  </div>
-</div>
 
 </div>
 

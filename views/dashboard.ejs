@@ -1,6 +1,7 @@
 <%- include('partials/header.ejs') %>
 
 <div class="background-dash">
+
   <!-- Welcome User -->
   <% if (userData) { %> <% let atIndex = userData.username.indexOf('@'); %>
   <p class="clear yellow text-center pt-3 ml-2">
@@ -185,6 +186,7 @@
     </div>
   </div>
 
+  <!-- Alert Section -->
   <div class="container alert-container">
     <div class="alert alert-danger d-none w-50 text-center m-auto" role="alert" id="alertMessage">
       Title and Content are required.
