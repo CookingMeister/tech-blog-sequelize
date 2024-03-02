@@ -144,6 +144,13 @@ li {
   top: 0;
 }
 
+.editDetails {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 2%;
+}
+
 .home {
   position: absolute;
   left: 0;
