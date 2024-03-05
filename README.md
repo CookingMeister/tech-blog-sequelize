@@ -19,6 +19,12 @@ Make sure you create a .env file to store environment variables for the mySQL da
 * From the dashboard, existing users can create, edit, and delete their own posts.
 * Option to update or delete your user profile.
 
+## Mock up
+
+The following image shows the web application's appearance and functionality:
+
+![90's themed tech blog with various electronics as background image, bright green and pink colors](public/img/blog_mock_up.png)
+
 ## Link
 
 A link to the deployed app on Heroku can be found [here](https://infinite-ocean-68541-91b9dc3361ab.herokuapp.com/).

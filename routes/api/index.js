@@ -6,6 +6,7 @@ const logoutRoutes = require('./logout-route');
 const dashboardRoutes = require('./dashboard-route');
 const commentRoutes = require('./comment-route');
 
+// Endpoint Routes to Use
 router.use('/register', registerRoutes);
 router.use('/user', userRoutes);
 router.use('/login', loginRoutes);

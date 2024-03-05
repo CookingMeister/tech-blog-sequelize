@@ -1,5 +1,9 @@
+/**
+ * User model class that represents user table in the database.
+ * Extends Model and initializes with id, username and password fields.
+ * Exports the User model for use in other parts of the application.
+ */
 const { Model, DataTypes } = require('sequelize');
-// const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {}

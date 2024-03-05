@@ -1,3 +1,8 @@
+/**
+ * Defines and exports the Post model class, which represents posts in the database.
+ *
+ * Extends Model and initializes the model's fields, options and associations.
+ */
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection.js');
 

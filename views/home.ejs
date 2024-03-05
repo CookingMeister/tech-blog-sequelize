@@ -67,9 +67,7 @@
             <p class="pt-1">
               Posted by <%= postUser.username.slice(0, atIndex) %>
                 <span class="createdOn">
-                   on <%= post.updatedAt.getMonth() + 1 
-                   %>/<%= post.updatedAt.getDate() 
-                   %>/<%= post.updatedAt.getFullYear() %>
+                   on <%= date(post.createdAt); %>
                 </span>
             </p>
           <% } else { %>
@@ -88,9 +86,7 @@
               atIndex = author.username.indexOf('@'); %>
               <em>
                 from <%= author.username.slice(0, atIndex) %>            
-                on <%= c.createdAt.getMonth() + 1 
-                %>/<%= c.createdAt.getDate() 
-                %>/<%= c.createdAt.getFullYear() %>
+                on <%= date(post.createdAt); %>
               </em>
             </p>
             <% }) %>
